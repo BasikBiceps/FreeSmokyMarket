@@ -1,0 +1,30 @@
+﻿@model IEnumerable<FreeSmokyMarket.Models.Tabacco>
+@{
+    //ViewData["Title"] = "Список смартфонов";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Магазин табака</title>
+</head>
+<body>
+    <h3>Табак</h3>
+    <table>
+        <tr>
+            <td>Название</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        @foreach (var tabacco in Model)
+        {
+            <tr>
+                <td>@tabacco.Name</td>
+                <td>@tabacco.Price</td>
+                <td><a href="~/Home/Buy/@tabacco.Id">Купить</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
