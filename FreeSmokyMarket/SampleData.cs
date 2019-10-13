@@ -10,9 +10,9 @@ namespace FreeSmokyMarket
     {
         public static void Initialize(FreeSmokyMarketContext ctx)
         {
-            if (!ctx.Tabaccos.Any())
+            if (!ctx.Tobaccos.Any())
             {
-                ctx.Tabaccos.AddRange(
+                ctx.Tobaccos.AddRange(
                     new Tabacco
                     {
                         Name = "Fumary",
