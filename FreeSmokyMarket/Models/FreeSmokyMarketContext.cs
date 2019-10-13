@@ -9,7 +9,7 @@ namespace FreeSmokyMarket.Models
 {
     public class FreeSmokyMarketContext : DbContext
     {
-        public DbSet<Tabacco> Tabaccos { get; set; }
+        public DbSet<Tabacco> Tobaccos { get; set; }
         public DbSet<Order> Orders { get; set; }
 
         public FreeSmokyMarketContext(DbContextOptions<FreeSmokyMarketContext> options)

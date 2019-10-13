@@ -17,7 +17,7 @@ namespace SmokyMarket.Controllers
         }
         public IActionResult Index()
         {
-            return View(_ctx.Tabaccos.ToList());
+            return View(_ctx.Tobaccos.ToList());
         }
 
         [HttpGet]
@@ -31,7 +31,6 @@ namespace SmokyMarket.Controllers
         public string Buy(Order order)
         {
             _ctx.Orders.Add(order);
-            // сохраняем в бд все изменения
             _ctx.SaveChanges();
             return "Спасибо, " + order.FirstName + " " + order.LastName + ", за покупку!";
         }
