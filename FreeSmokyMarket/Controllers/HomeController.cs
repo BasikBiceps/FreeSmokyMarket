@@ -19,5 +19,21 @@ namespace SmokyMarket.Controllers
         {
             return View(_ctx.Tabaccos.ToList());
         }
+
+        [HttpGet]
+        public IActionResult Buy(int id)
+        {
+            ViewBag.TabaccoId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public string Buy(Order order)
+        {
+            _ctx.Orders.Add(order);
+            // сохраняем в бд все изменения
+            _ctx.SaveChanges();
+            return "Спасибо, " + order.FirstName + " " + order.LastName + ", за покупку!";
+        }
     }
 }
