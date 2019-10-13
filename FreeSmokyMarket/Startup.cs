@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FreeSmokyMarket.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace FreeSmokyMarket
 {
@@ -28,7 +29,7 @@ namespace FreeSmokyMarket
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory f)
         {
             if (env.IsDevelopment())
             {
