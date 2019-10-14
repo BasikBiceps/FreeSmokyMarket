@@ -26,17 +26,10 @@ namespace SmokyMarket.Controllers
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "HomeControllerLogs.txt"));
             _logger = loggerFactory.CreateLogger("FileLogger");
         }
+
         public IActionResult Index()
         {
-            var test = _ctx.Products;
-            var test2 = _ctx.Brands;
-            var test3 = _ctx.Tobaccos;
-
-            test.First().Brands = test2.ToList();
-            test.First().Brands.First().Tobaccos = test3.ToList();
-
-
-            return View(test);
+            return View(_ctx.Products.ToList());
         }
 
         [HttpGet]
@@ -54,8 +47,7 @@ namespace SmokyMarket.Controllers
             _logger.LogInformation("Orders fields: \nFirstName: {0}\nLastName: {0}\nPhoneNumber: {0}\nTobaccoId: {0}", 
                 order.FirstName, 
                 order.LastName, 
-                order.PhoneNumber, 
-                order.TabaccoId);
+                order.PhoneNumber);
 
             _ctx.Orders.Add(order);
             _ctx.SaveChanges();

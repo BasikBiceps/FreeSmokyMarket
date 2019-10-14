@@ -12,28 +12,35 @@ namespace FreeSmokyMarket
         {
             if (!ctx.Products.Any())
             {
-                var product = new Product {ProductName = "Tobacco"};
-                var brand = new Brand
+                var product1 = new Product { ProductName = "Tobaccos" };
+
+                var brand1 = new Brand
                 {
-                    Product = product,
+                    Product = product1,
                     BrandName = "Fumari",
                     Tobaccos = new List<Tobacco>()
                 };
+
                 var tobacco = new Tobacco
                 {
-                    Brand = brand,
+                    Brand = brand1,
                     Amount = 10,
-                    Description = "zalupka",
+                    Description = "Sanya pidr)",
                     TobaccoStrength = TobaccoStrength.Light,
                     Price = 500,
                     Taste = "Blackberry"
                 };
-                brand.Tobaccos.Add(tobacco);
+                brand1.Tobaccos.Add(tobacco);
 
+                ctx.Products.Add(product1);
+                ctx.Brands.Add(brand1);
                 ctx.Tobaccos.Add(tobacco);
-                ctx.Brands.Add(brand);
-                ctx.Products.Add(product);
-               
+
+                var product2 = new Product { ProductName = "Coals" };
+                var product3 = new Product { ProductName = "Hookahs" };
+
+                ctx.Products.Add(product2);
+                ctx.Products.Add(product3);
 
                 ctx.SaveChanges();
             }

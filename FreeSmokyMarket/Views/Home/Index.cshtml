@@ -5,23 +5,19 @@
     ViewData["Title"] = "Каталог товаров";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h3>Табак</h3>
+<h3>Товары</h3>
 <table class="table-condensed">
     <tr>
         <td>Название</td>
-        <td>Цена</td>
         <td></td>
     </tr>
 
     @foreach (var product in Model)
     {
         <tr>
-            <td>@product.Id</td>
-            <td>@product.Brands.First().BrandName</td>
-            <td>@product.Brands.First().Tobaccos.First().Description</td>
-            <td>@product.Brands.First().Tobaccos.First().Taste</td>
+            <td>@product.ProductName</td>
 
-            <td><a href="~/Home/Buy/@product.Id">Купить</a></td>
+            <td><a href="~/Home/Buy/@product.Id">Выбрать</a></td>
         </tr>
     }
 </table>
