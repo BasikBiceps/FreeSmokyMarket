@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FreeSmokyMarket.Models.Tabacco>
+﻿@using FreeSmokyMarket.Models
+@model IEnumerable<FreeSmokyMarket.Models.Product>
+
 @{
     ViewData["Title"] = "Каталог товаров";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,12 +12,16 @@
         <td>Цена</td>
         <td></td>
     </tr>
-    @foreach (var tabacco in Model)
+
+    @foreach (var product in Model)
     {
         <tr>
-            <td>@tabacco.Name</td>
-            <td>@tabacco.Price</td>
-            <td><a href="~/Home/Buy/@tabacco.Id">Купить</a></td>
+            <td>@product.Id</td>
+            <td>@product.Brands.First().BrandName</td>
+            <td>@product.Brands.First().Tobaccos.First().Description</td>
+            <td>@product.Brands.First().Tobaccos.First().Taste</td>
+
+            <td><a href="~/Home/Buy/@product.Id">Купить</a></td>
         </tr>
     }
 </table>

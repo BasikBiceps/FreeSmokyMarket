@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using FreeSmokyMarket.Models;
 
@@ -22,11 +21,11 @@ namespace FreeSmokyMarket
                     var context = services.GetRequiredService<FreeSmokyMarketContext>();
                     SampleData.Initialize(context);
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while seeding the database.");
+                    Console.WriteLine(e);
                 }
+
 
                 host.Run();
             }

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FreeSmokyMarket.Models;
+
 using Microsoft.Extensions.Logging;
 using FreeSmokyMarket.Logging;
 using System.IO;
+
+using Microsoft.EntityFrameworkCore;
+
 
 namespace SmokyMarket.Controllers
 {
@@ -24,7 +28,15 @@ namespace SmokyMarket.Controllers
         }
         public IActionResult Index()
         {
-            return View(_ctx.Tobaccos.ToList());
+            var test = _ctx.Products;
+            var test2 = _ctx.Brands;
+            var test3 = _ctx.Tobaccos;
+
+            test.First().Brands = test2.ToList();
+            test.First().Brands.First().Tobaccos = test3.ToList();
+
+
+            return View(test);
         }
 
         [HttpGet]
