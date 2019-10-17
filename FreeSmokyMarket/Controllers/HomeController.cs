@@ -44,10 +44,11 @@ namespace SmokyMarket.Controllers
         [HttpPost]
         public string Buy(Order order)
         {
-            _logger.LogInformation("Orders fields: \nFirstName: {0}\nLastName: {0}\nPhoneNumber: {0}\nTobaccoId: {0}", 
+            _logger.LogInformation("Orders fields: \nFirstName: {0}\nLastName: {0}\nPhoneNumber: {0}\nAddress: {0}", 
                 order.FirstName, 
                 order.LastName, 
-                order.PhoneNumber);
+                order.PhoneNumber,
+                order.Address);
 
             _ctx.Orders.Add(order);
             _ctx.SaveChanges();
