@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FreeSmokyMarket.Models
 {
-    public class Product
+    public class Product //jguyuyf
     {
         public int Id { get; set; }
         public string ProductName { get; set; }
