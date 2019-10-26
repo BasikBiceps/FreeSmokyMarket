@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using FreeSmokyMarket.Models;
+
+using FreeSmokyMarket.Data;
 
 namespace FreeSmokyMarket
 {

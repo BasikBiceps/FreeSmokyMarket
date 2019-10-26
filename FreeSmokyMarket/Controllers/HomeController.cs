@@ -1,15 +1,14 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FreeSmokyMarket.Models;
 
 using Microsoft.Extensions.Logging;
 using FreeSmokyMarket.Logging;
-using System.IO;
-
-using Microsoft.EntityFrameworkCore;
+using FreeSmokyMarket.Data;
+using FreeSmokyMarket.Data.Entities;
 
 
 namespace SmokyMarket.Controllers
