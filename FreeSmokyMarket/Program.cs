@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
 using FreeSmokyMarket.Data;
+using FreeSmokyMarket.EF;
+using FreeSmokyMarket.EF.Repositories;
 
 namespace FreeSmokyMarket
 {
@@ -26,7 +28,6 @@ namespace FreeSmokyMarket
                 {
                     Console.WriteLine(e);
                 }
-
 
                 host.Run();
             }

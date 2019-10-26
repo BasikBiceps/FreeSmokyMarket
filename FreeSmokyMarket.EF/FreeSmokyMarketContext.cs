@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 using FreeSmokyMarket.Data.Entities;
+using System.Data.SqlTypes;
 
-namespace FreeSmokyMarket
+namespace FreeSmokyMarket.EF
 {
     public class FreeSmokyMarketContext : DbContext
     {
@@ -20,6 +21,19 @@ namespace FreeSmokyMarket
             : base(options)
         {
             Database.EnsureCreated();
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        //    modelBuilder.Entity<Product>().HasMany(p => p.Brands).WithOne(b => b.Product);
+
+          //  modelBuilder.Entity<Brand>().HasMany(cp => cp.concreteProducts).WithOne(b => b.Brand);
+
+            //modelBuilder.Entity<ConcreteProduct>().HasOne(cp => cp.Brand);
+
+            //modelBuilder.Entity<Order>().HasOne(o => o.Basket);
+
+            //modelBuilder.Entity<Basket>().HasMany(cp => cp.concreteProducts);
         }
     }
 }

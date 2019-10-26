@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 using FreeSmokyMarket.Data;
+using FreeSmokyMarket.EF;
 
 namespace FreeSmokyMarket
 {

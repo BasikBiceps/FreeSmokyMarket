@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreeSmokyMarket.Data;
 using FreeSmokyMarket.Data.Entities;
 
-namespace FreeSmokyMarket
+namespace FreeSmokyMarket.EF
 {
     public static class SampleData
     {

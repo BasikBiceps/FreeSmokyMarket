@@ -5,3 +5,5 @@ FreeSmokyMarket/appsettings.json
 FreeSmokyMarket/FreeSmokyMarket.csproj.user
 FreeSmokyMarket.Data/bin/
 FreeSmokyMarket.Data/obj/
+FreeSmokyMarket.EF/bin/
+FreeSmokyMarket.EF/obj/

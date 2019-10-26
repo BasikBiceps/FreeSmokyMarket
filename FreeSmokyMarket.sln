@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeSmokyMarket", "FreeSmokyMarket\FreeSmokyMarket.csproj", "{8F2DF5A0-63F4-4DC8-8403-0024262FCEA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeSmokyMarket.Data", "FreeSmokyMarket.Data\FreeSmokyMarket.Data.csproj", "{CFBD8C14-549C-4AF7-99B4-48E14E836FA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeSmokyMarket.Data", "FreeSmokyMarket.Data\FreeSmokyMarket.Data.csproj", "{CFBD8C14-549C-4AF7-99B4-48E14E836FA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeSmokyMarket.EF", "FreeSmokyMarket.EF\FreeSmokyMarket.EF.csproj", "{6A48F797-4F18-4095-B411-4C20D0DAA641}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CFBD8C14-549C-4AF7-99B4-48E14E836FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFBD8C14-549C-4AF7-99B4-48E14E836FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFBD8C14-549C-4AF7-99B4-48E14E836FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A48F797-4F18-4095-B411-4C20D0DAA641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A48F797-4F18-4095-B411-4C20D0DAA641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A48F797-4F18-4095-B411-4C20D0DAA641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A48F797-4F18-4095-B411-4C20D0DAA641}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
