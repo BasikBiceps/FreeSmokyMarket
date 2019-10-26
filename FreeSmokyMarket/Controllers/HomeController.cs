@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using FreeSmokyMarket.Logging;
 using FreeSmokyMarket.Data;
 using FreeSmokyMarket.Data.Entities;
+using FreeSmokyMarket;
 
 
 namespace SmokyMarket.Controllers

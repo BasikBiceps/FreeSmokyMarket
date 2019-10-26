@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FreeSmokyMarket.Data.Entities;
 
-namespace FreeSmokyMarket.Data
+namespace FreeSmokyMarket
 {
     public class FreeSmokyMarketContext : DbContext
     {
