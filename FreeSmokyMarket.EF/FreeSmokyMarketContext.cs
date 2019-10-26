@@ -20,14 +20,14 @@ namespace FreeSmokyMarket.EF
         public FreeSmokyMarketContext(DbContextOptions<FreeSmokyMarketContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-        //    modelBuilder.Entity<Product>().HasMany(p => p.Brands).WithOne(b => b.Product);
+            //modelBuilder.Entity<Product>().HasMany(p => p.Brands).WithOne(b => b.Product);
 
-          //  modelBuilder.Entity<Brand>().HasMany(cp => cp.concreteProducts).WithOne(b => b.Brand);
+            //modelBuilder.Entity<Brand>().HasMany(cp => cp.concreteProducts).WithOne(b => b.Brand);
 
             //modelBuilder.Entity<ConcreteProduct>().HasOne(cp => cp.Brand);
 
