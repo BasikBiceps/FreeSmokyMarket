@@ -11,6 +11,6 @@ namespace FreeSmokyMarket.Data.Entities
         public string BrandName { get; set; }
         public Product Product { get; set; }
 
-        public List<Tobacco> Tobaccos;
+        public List<ConcreteProduct> concreteProducts;
     }
 }

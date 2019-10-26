@@ -20,23 +20,21 @@ namespace FreeSmokyMarket
                 {
                     Product = product1,
                     BrandName = "Fumari",
-                    Tobaccos = new List<Tobacco>()
+                    concreteProducts = new List<ConcreteProduct>()
                 };
 
-                var tobacco = new Tobacco
+                var tobacco = new ConcreteProduct
                 {
                     Brand = brand1,
                     Amount = 10,
-                    Description = "Sanya pidr)",
-                    TobaccoStrength = TobaccoStrength.Light,
-                    Price = 500,
-                    Taste = "Blackberry"
+                    Description = "Strength: light;\nTaste: blackBerry;",
+                    Price = 500
                 };
-                brand1.Tobaccos.Add(tobacco);
+                brand1.concreteProducts.Add(tobacco);
 
                 ctx.Products.Add(product1);
                 ctx.Brands.Add(brand1);
-                ctx.Tobaccos.Add(tobacco);
+                ctx.ConcreteProducts.Add(tobacco);
 
                 var product2 = new Product { ProductName = "Coals" };
                 var product3 = new Product { ProductName = "Hookahs" };

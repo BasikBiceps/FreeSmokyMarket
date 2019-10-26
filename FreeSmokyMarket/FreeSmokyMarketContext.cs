@@ -13,7 +13,7 @@ namespace FreeSmokyMarket
         public DbSet<Order> Orders { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Brand> Brands { get; set; }
-        public DbSet<Tobacco> Tobaccos { get; set; }
+        public DbSet<ConcreteProduct> ConcreteProducts { get; set; }
         public DbSet<Product> Products { get; set; }
 
         public FreeSmokyMarketContext(DbContextOptions<FreeSmokyMarketContext> options)
