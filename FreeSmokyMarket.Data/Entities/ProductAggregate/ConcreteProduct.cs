@@ -10,6 +10,7 @@ namespace FreeSmokyMarket.Data.Entities
             public decimal Price { get; set; }
             public int Amount { get; set; }
             public string Description { get; set; }
+            public byte[] ProductPicture { get; set; }
             public Brand Brand { get; set; }
     }
 }

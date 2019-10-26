@@ -20,7 +20,7 @@ namespace FreeSmokyMarket.EF
                 {
                     Product = product1,
                     BrandName = "Fumari",
-                    concreteProducts = new List<ConcreteProduct>()
+                    ConcreteProducts = new List<ConcreteProduct>()
                 };
 
                 var tobacco = new ConcreteProduct
@@ -30,7 +30,7 @@ namespace FreeSmokyMarket.EF
                     Description = "Strength: light;\nTaste: blackBerry;",
                     Price = 500
                 };
-                brand1.concreteProducts.Add(tobacco);
+                brand1.ConcreteProducts.Add(tobacco);
 
                 ctx.Products.Add(product1);
                 ctx.Brands.Add(brand1);

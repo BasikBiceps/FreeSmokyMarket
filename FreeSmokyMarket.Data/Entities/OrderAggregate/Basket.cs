@@ -10,7 +10,6 @@ namespace FreeSmokyMarket.Data.Entities
         public int Id { get; set; }
         public int SessionId { set; get; }
         public DateTime SessionStart { get; set; }
-        public int lol { get; set; }
 
         public List<ConcreteProduct> concreteProducts;
     }

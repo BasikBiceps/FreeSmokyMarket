@@ -21,11 +21,7 @@ namespace FreeSmokyMarket
 
         public bool IsEnabled(LogLevel logLevel)
         {
-            if (logLevel == LogLevel.Information)
-            {
-                return true;
-            }
-            return false;
+            return logLevel == LogLevel.Information;
         }
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
