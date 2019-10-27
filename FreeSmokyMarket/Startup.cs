@@ -41,7 +41,7 @@ namespace FreeSmokyMarket
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

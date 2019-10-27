@@ -10,6 +10,6 @@ namespace FreeSmokyMarket.Data.Entities
         public int Id { get; set; }
         public string ProductName { get; set; }
 
-        public List<Brand> Brands;
+        public List<Brand> Brands { get; set; }
     }
 }
