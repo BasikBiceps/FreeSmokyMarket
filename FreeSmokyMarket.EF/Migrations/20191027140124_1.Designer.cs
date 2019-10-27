@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreeSmokyMarket.EF.Migrations
 {
     [DbContext(typeof(FreeSmokyMarketContext))]
-    [Migration("20191026221234_1")]
+    [Migration("20191027140124_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,6 +69,8 @@ namespace FreeSmokyMarket.EF.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<byte[]>("ProductPicture");
 
                     b.HasKey("Id");
 

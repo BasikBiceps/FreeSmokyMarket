@@ -68,6 +68,8 @@ namespace FreeSmokyMarket.EF.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<byte[]>("ProductPicture");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BasketId");

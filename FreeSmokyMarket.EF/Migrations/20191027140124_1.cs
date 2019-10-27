@@ -88,6 +88,7 @@ namespace FreeSmokyMarket.EF.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Amount = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
+                    ProductPicture = table.Column<byte[]>(nullable: true),
                     BrandId = table.Column<int>(nullable: true),
                     BasketId = table.Column<int>(nullable: true)
                 },
