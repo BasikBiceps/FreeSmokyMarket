@@ -27,15 +27,22 @@ namespace FreeSmokyMarket.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Product>().HasMany(p => p.Brands).WithOne(b => b.Product);
+            modelBuilder.Entity<ConcreteProduct>().Property(cp => cp.Price).HasColumnType("decimal(18, 2)");
 
-            //modelBuilder.Entity<Brand>().HasMany(cp => cp.concreteProducts).WithOne(b => b.Brand);
+            //modelBuilder.Entity<Product>()
+            //    .HasMany<Brand>()
+            //    .WithOne(b => b.Product);
 
-            //modelBuilder.Entity<ConcreteProduct>().HasOne(cp => cp.Brand);
+            //modelBuilder.Entity<Brand>()
+            //    .HasMany<ConcreteProduct>()
+            //    .WithOne(cp => cp.Brand);
 
-            //modelBuilder.Entity<Order>().HasOne(o => o.Basket);
+            //modelBuilder.Entity<Basket>()
+            //    .HasMany<ConcreteProduct>()
+            //    .WithOne(bt => bt.Basket);
 
-            //modelBuilder.Entity<Basket>().HasMany(cp => cp.concreteProducts);
+            //modelBuilder.Entity<Order>()
+            //    .HasOne(o => o.Basket);
         }
     }
 }
