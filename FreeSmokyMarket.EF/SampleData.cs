@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using FreeSmokyMarket.Data;
 using FreeSmokyMarket.Data.Entities;
 
@@ -12,38 +11,36 @@ namespace FreeSmokyMarket.EF
     {
         public static void Initialize(FreeSmokyMarketContext ctx)
         {
-            if (!ctx.Products.Any())
+            if (ctx.Products.Any()) return;
+            var product1 = new Product { ProductName = "Tobaccos" };
+
+            var brand1 = new Brand
             {
-                var product1 = new Product { ProductName = "Tobaccos" };
+                Product = product1,
+                BrandName = "Fumari",
+                ConcreteProducts = new List<ConcreteProduct>()
+            };
 
-                var brand1 = new Brand
-                {
-                    Product = product1,
-                    BrandName = "Fumari",
-                    ConcreteProducts = new List<ConcreteProduct>()
-                };
+            var tobacco = new ConcreteProduct
+            {
+                Brand = brand1,
+                Amount = 10,
+                Description = "Strength: light;\nTaste: blackBerry;",
+                Price = 500
+            };
+            brand1.ConcreteProducts.Add(tobacco);
 
-                var tobacco = new ConcreteProduct
-                {
-                    Brand = brand1,
-                    Amount = 10,
-                    Description = "Strength: light;\nTaste: blackBerry;",
-                    Price = 500
-                };
-                brand1.ConcreteProducts.Add(tobacco);
+            ctx.Products.Add(product1);
+            ctx.Brands.Add(brand1);
+            ctx.ConcreteProducts.Add(tobacco);
 
-                ctx.Products.Add(product1);
-                ctx.Brands.Add(brand1);
-                ctx.ConcreteProducts.Add(tobacco);
+            var product2 = new Product { ProductName = "Coals" };
+            var product3 = new Product { ProductName = "Hookahs" };
 
-                var product2 = new Product { ProductName = "Coals" };
-                var product3 = new Product { ProductName = "Hookahs" };
+            ctx.Products.Add(product2);
+            ctx.Products.Add(product3);
 
-                ctx.Products.Add(product2);
-                ctx.Products.Add(product3);
-
-                ctx.SaveChanges();
-            }
+            ctx.SaveChanges();
         }
     }
 }
