@@ -19,12 +19,6 @@ namespace FreeSmokyMarket.EF
         public DbSet<ConcreteProduct> ConcreteProducts { get; set; }
         public DbSet<Product> Products { get; set; }
 
-        public FreeSmokyMarketContext(DbContextOptions<FreeSmokyMarketContext> options)
-            : base(options)
-        {
-           // Database.EnsureCreated();
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
