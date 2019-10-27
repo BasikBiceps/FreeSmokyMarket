@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FreeSmokyMarket.Data.Entities;
 using System.Data.SqlTypes;
+using System.IO;
 using Microsoft.Extensions.Configuration;
 
 namespace FreeSmokyMarket.EF
@@ -21,28 +22,26 @@ namespace FreeSmokyMarket.EF
         public FreeSmokyMarketContext(DbContextOptions<FreeSmokyMarketContext> options)
             : base(options)
         {
-            // Database.EnsureCreated();
+           // Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+            optionsBuilder.UseSqlServer(builder.Build().GetConnectionString("DefaultConnection"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ConcreteProduct>().Property(cp => cp.Price).HasColumnType("decimal(18, 2)");
+            //modelBuilder.Entity<Product>().HasMany(p => p.Brands).WithOne(b => b.Product);
 
-            //modelBuilder.Entity<Product>()
-            //    .HasMany<Brand>()
-            //    .WithOne(b => b.Product);
+            //modelBuilder.Entity<Brand>().HasMany(cp => cp.concreteProducts).WithOne(b => b.Brand);
 
-            //modelBuilder.Entity<Brand>()
-            //    .HasMany<ConcreteProduct>()
-            //    .WithOne(cp => cp.Brand);
+            //modelBuilder.Entity<ConcreteProduct>().HasOne(cp => cp.Brand);
 
-            //modelBuilder.Entity<Basket>()
-            //    .HasMany<ConcreteProduct>()
-            //    .WithOne(bt => bt.Basket);
+            //modelBuilder.Entity<Order>().HasOne(o => o.Basket);
 
-            //modelBuilder.Entity<Order>()
-            //    .HasOne(o => o.Basket);
-
+            //modelBuilder.Entity<Basket>().HasMany(cp => cp.concreteProducts);
         }
     }
 }
