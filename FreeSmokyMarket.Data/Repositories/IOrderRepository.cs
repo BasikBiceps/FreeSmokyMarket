@@ -6,15 +6,16 @@ using FreeSmokyMarket.Data.Entities;
 
 namespace FreeSmokyMarket.Data.Repositories
 {
-    interface IOrderRepository
+    public interface IOrderRepository
     {
         void CreateOrder(Order order);
         void DeleteOrder(Order order);
         List<Order> GetAllOrders();
         Order GetOrder(int id);
-        Basket GetBasket(int id);
+        Basket GetBasket(int orderId);
         void CreateBasket(Basket basket);
         void DeleteBasket(Basket basket);
-        void AddConcreteProductInBasket(int concreteProductId);
+        void AddBasket(Basket basket);
+        void UpdateBasket(Basket basket);
     }
 }
