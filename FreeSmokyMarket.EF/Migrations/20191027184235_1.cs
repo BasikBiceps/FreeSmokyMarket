@@ -85,7 +85,7 @@ namespace FreeSmokyMarket.EF.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     Amount = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     ProductPicture = table.Column<byte[]>(nullable: true),

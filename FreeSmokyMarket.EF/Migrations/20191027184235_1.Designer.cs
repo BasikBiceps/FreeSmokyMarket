@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreeSmokyMarket.EF.Migrations
 {
     [DbContext(typeof(FreeSmokyMarketContext))]
-    [Migration("20191027140124_1")]
+    [Migration("20191027184235_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,7 +68,7 @@ namespace FreeSmokyMarket.EF.Migrations
                     b.Property<string>("Description");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<byte[]>("ProductPicture");
 
@@ -122,18 +122,18 @@ namespace FreeSmokyMarket.EF.Migrations
             modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Brand", b =>
                 {
                     b.HasOne("FreeSmokyMarket.Data.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("Brands")
                         .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("FreeSmokyMarket.Data.Entities.ConcreteProduct", b =>
                 {
                     b.HasOne("FreeSmokyMarket.Data.Entities.Basket", "Basket")
-                        .WithMany()
+                        .WithMany("ConcreteProducts")
                         .HasForeignKey("BasketId");
 
                     b.HasOne("FreeSmokyMarket.Data.Entities.Brand", "Brand")
-                        .WithMany()
+                        .WithMany("ConcreteProducts")
                         .HasForeignKey("BrandId");
                 });
 
