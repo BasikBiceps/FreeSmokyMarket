@@ -1,48 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
-using FreeSmokyMarket.Data.Entities;
 using FreeSmokyMarket.Data.Repositories;
-using Microsoft.EntityFrameworkCore;
+using FreeSmokyMarket.Data.Entities;
 using System.Linq;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace FreeSmokyMarket.EF.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class BrandRepository : IBrandRepository
     {
-        public List<Product> GetAllProducts(int brandId)
+        public List<Brand> GetAllBrands(int categoryId)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                return ctx.Products.Include(cp => cp.Brand).Where(cp => cp.Brand.Id == brandId).ToList();
+                return ctx.Brands.Include(b => b.Category).Where(b => b.Category.Id == categoryId).ToList();
             }
         }
 
-        public void CreateProduct(Product product)
+        public void CreateBrand(Brand brand)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                ctx.Add(product);
+                ctx.Add(brand);
                 ctx.SaveChanges();
             }
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateBrand(Brand brand)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                ctx.Update(product);
+                ctx.Update(brand);
                 ctx.SaveChanges();
             }
         }
 
-        public void DeleteProduct(Product product)
+        public void DeleteBrand(Brand brand)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                ctx.Remove(product);
+                ctx.Remove(brand);
                 ctx.SaveChanges();
             }
         }
