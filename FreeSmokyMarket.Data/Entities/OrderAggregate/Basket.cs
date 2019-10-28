@@ -14,6 +14,8 @@ namespace FreeSmokyMarket.Data.Entities
         public int SessionId { set; get; }
         public DateTime SessionStart { get; set; }
 
+        public Order Order { get; set; }
+
         public List<ConcreteProduct> ConcreteProducts { get; set; }
     }
 }
