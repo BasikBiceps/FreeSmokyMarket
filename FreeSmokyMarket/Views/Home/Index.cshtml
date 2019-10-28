@@ -1,5 +1,5 @@
 ﻿@using FreeSmokyMarket.Data.Entities
-@model IEnumerable<FreeSmokyMarket.Data.Entities.Product>
+@model IEnumerable<FreeSmokyMarket.Data.Entities.Category>
 
 @{
     ViewData["Title"] = "Каталог товаров";
@@ -12,12 +12,12 @@
         <td></td>
     </tr>
 
-    @foreach (var product in Model)
+    @foreach (var category in Model)
     {
         <tr>
-            <td>@product.ProductName</td>
+            <td>@category.CategoryName</td>
 
-            <td><a href="~/Home/Buy/@product.Id">Выбрать</a></td>
+            <td><a href="~/Home/Buy/@category.Id">Выбрать</a></td>
         </tr>
     }
 </table>

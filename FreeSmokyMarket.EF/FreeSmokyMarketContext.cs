@@ -17,8 +17,8 @@ namespace FreeSmokyMarket.EF
         public DbSet<Order> Orders { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Brand> Brands { get; set; }
-        public DbSet<ConcreteProduct> ConcreteProducts { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,7 +28,7 @@ namespace FreeSmokyMarket.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ConcreteProduct>().Property(cp => cp.Price).HasColumnType("decimal(18, 2)");
+            modelBuilder.Entity<Product>().Property(cp => cp.Price).HasColumnType("decimal(18, 2)");
 /*
             modelBuilder.Entity<Product>()
                 .HasMany<Brand>()

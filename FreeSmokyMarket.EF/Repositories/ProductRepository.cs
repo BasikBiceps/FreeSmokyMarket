@@ -12,62 +12,62 @@ namespace FreeSmokyMarket.EF.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        public List<Product> GetAllProducts()
+        public List<Category> GetAllCategories()
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                return ctx.Products.ToList();
+                return ctx.Categories.ToList();
             }
         }
 
-        public Product GetProductDetails(int productId)
+        public Category GetCategoryDetails(int categoryId)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                return ctx.Products.Include(p => p.Brands).ThenInclude(cp => cp.ConcreteProducts).Where(p => p.Id == productId).FirstOrDefault();
+                return ctx.Categories.Include(c => c.Brands).ThenInclude(b => b.Products).Where(c => c.Id == categoryId).FirstOrDefault();
             }
         }
 
-        public void CreateProduct(Product product)
+        public void CreateCategory(Category category)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                ctx.Add(product);
+                ctx.Add(category);
                 ctx.SaveChanges();
             }
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateCategory(Category category)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                ctx.Update(product);
+                ctx.Update(category);
                 ctx.SaveChanges();
             }
         }
 
-        public void DeleteProduct(Product product)
+        public void DeleteCategory(Category category)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                ctx.Remove(product);
+                ctx.Remove(category);
                 ctx.SaveChanges();
             }
         }
 
-        public List<Brand> GetAllBrands(int productId)
+        public List<Brand> GetAllBrands(int categoryId)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                return ctx.Brands.Include(b => b.Product).Where(b => b.Product.Id == productId).ToList();
+                return ctx.Brands.Include(b => b.Category).Where(b => b.Category.Id == categoryId).ToList();
             }
         }
 
-        public List<ConcreteProduct> GetAllConcreteProducts(int brandId)
+        public List<Product> GetAllProducts(int brandId)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                return ctx.ConcreteProducts.Include(cp => cp.Brand).Where(cp => cp.Brand.Id == brandId).ToList();
+                return ctx.Products.Include(cp => cp.Brand).Where(cp => cp.Brand.Id == brandId).ToList();
             }
         }
 
@@ -98,29 +98,29 @@ namespace FreeSmokyMarket.EF.Repositories
             }
         }
 
-        public void CreateConcreteProduct(ConcreteProduct concreteProduct)
+        public void CreateProduct(Product product)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                ctx.Add(concreteProduct);
+                ctx.Add(product);
                 ctx.SaveChanges();
             }
         }
 
-        public void UpdateConcreteProduct(ConcreteProduct concreteProduct)
+        public void UpdateProduct(Product product)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                ctx.Update(concreteProduct);
+                ctx.Update(product);
                 ctx.SaveChanges();
             }
         }
 
-        public void DeleteConcreteProduct(ConcreteProduct concreteProduct)
+        public void DeleteProduct(Product product)
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                ctx.Remove(concreteProduct);
+                ctx.Remove(product);
                 ctx.SaveChanges();
             }
         }

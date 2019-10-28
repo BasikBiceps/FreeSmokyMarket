@@ -23,16 +23,16 @@ namespace FreeSmokyMarket.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "Categories",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ProductName = table.Column<string>(nullable: true)
+                    CategoryName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,7 +46,7 @@ namespace FreeSmokyMarket.EF.Migrations
                     Address = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     OrderDate = table.Column<DateTime>(nullable: false),
-                    BasketId = table.Column<int>(nullable: true)
+                    BasketId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,7 +56,7 @@ namespace FreeSmokyMarket.EF.Migrations
                         column: x => x.BasketId,
                         principalTable: "Baskets",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,21 +66,21 @@ namespace FreeSmokyMarket.EF.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     BrandName = table.Column<string>(nullable: true),
-                    ProductId = table.Column<int>(nullable: true)
+                    CategoryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Brands", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Brands_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
+                        name: "FK_Brands_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ConcreteProducts",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -94,15 +94,15 @@ namespace FreeSmokyMarket.EF.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ConcreteProducts", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ConcreteProducts_Baskets_BasketId",
+                        name: "FK_Products_Baskets_BasketId",
                         column: x => x.BasketId,
                         principalTable: "Baskets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ConcreteProducts_Brands_BrandId",
+                        name: "FK_Products_Brands_BrandId",
                         column: x => x.BrandId,
                         principalTable: "Brands",
                         principalColumn: "Id",
@@ -110,42 +110,43 @@ namespace FreeSmokyMarket.EF.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Brands_ProductId",
+                name: "IX_Brands_CategoryId",
                 table: "Brands",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ConcreteProducts_BasketId",
-                table: "ConcreteProducts",
-                column: "BasketId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ConcreteProducts_BrandId",
-                table: "ConcreteProducts",
-                column: "BrandId");
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_BasketId",
                 table: "Orders",
+                column: "BasketId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_BasketId",
+                table: "Products",
                 column: "BasketId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_BrandId",
+                table: "Products",
+                column: "BrandId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ConcreteProducts");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Brands");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Baskets");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Brands");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

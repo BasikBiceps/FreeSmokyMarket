@@ -29,7 +29,7 @@ namespace SmokyMarket.Controllers
 
         public IActionResult Index()
         {
-            return View(_ctx.Products.ToList());
+            return View(_ctx.Categories.ToList());
         }
 
         [HttpGet]

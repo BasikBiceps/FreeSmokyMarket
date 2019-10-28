@@ -26,6 +26,10 @@ namespace FreeSmokyMarket
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddTransient<IProductRepository, ProductRepository>();
+            //services.AddTransient<IBrandRepository, BrandRepository>();
+            //services.AddTransient<IRepository, ProductRepository>();
+            //services.AddTransient<IProductRepository, ProductRepository>();
             services.AddDbContext<FreeSmokyMarketContext>();
             services.AddMvc();
         }

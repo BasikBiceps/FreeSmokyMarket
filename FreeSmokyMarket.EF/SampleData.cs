@@ -11,34 +11,34 @@ namespace FreeSmokyMarket.EF
     {
         public static void Initialize(FreeSmokyMarketContext ctx)
         {
-            if (ctx.Products.Any()) return;
-            var product1 = new Product { ProductName = "Tobaccos" };
+            if (ctx.Categories.Any()) return;
+            var category1 = new Category { CategoryName = "Tobaccos" };
 
             var brand1 = new Brand
             {
-                Product = product1,
+                Category = category1,
                 BrandName = "Fumari",
-                ConcreteProducts = new List<ConcreteProduct>()
+                Products = new List<Product>()
             };
 
-            var tobacco = new ConcreteProduct
+            var tobacco = new Product
             {
                 Brand = brand1,
                 Amount = 10,
                 Description = "Strength: light;\nTaste: blackBerry;",
                 Price = 500
             };
-            brand1.ConcreteProducts.Add(tobacco);
+            brand1.Products.Add(tobacco);
 
-            ctx.Products.Add(product1);
+            ctx.Categories.Add(category1);
             ctx.Brands.Add(brand1);
-            ctx.ConcreteProducts.Add(tobacco);
+            ctx.Products.Add(tobacco);
 
-            var product2 = new Product { ProductName = "Coals" };
-            var product3 = new Product { ProductName = "Hookahs" };
+            var category2 = new Category { CategoryName = "Coals" };
+            var category3 = new Category { CategoryName = "Hookahs" };
 
-            ctx.Products.Add(product2);
-            ctx.Products.Add(product3);
+            ctx.Categories.Add(category2);
+            ctx.Categories.Add(category3);
 
             ctx.SaveChanges();
         }

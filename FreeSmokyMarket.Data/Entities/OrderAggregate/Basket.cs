@@ -16,6 +16,6 @@ namespace FreeSmokyMarket.Data.Entities
 
         public Order Order { get; set; }
 
-        public List<ConcreteProduct> ConcreteProducts { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

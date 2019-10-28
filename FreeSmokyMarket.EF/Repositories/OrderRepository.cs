@@ -66,14 +66,6 @@ namespace FreeSmokyMarket.EF.Repositories
             }
         }
 
-        public void AddBasket(Basket basket)
-        {
-            using (var context = new FreeSmokyMarketContext())
-            {
-                context.Baskets.Add(basket);
-            }
-        }
-
         public void UpdateBasket(Basket basket)
         {
             using (var context = new FreeSmokyMarketContext())
