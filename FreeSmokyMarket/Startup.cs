@@ -10,7 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-using FreeSmokyMarket.Data;
+using FreeSmokyMarket.Data.Repositories;
+using FreeSmokyMarket.EF.Repositories;
 using FreeSmokyMarket.EF;
 
 namespace FreeSmokyMarket
@@ -26,10 +27,10 @@ namespace FreeSmokyMarket
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTransient<IProductRepository, ProductRepository>();
-            //services.AddTransient<IBrandRepository, BrandRepository>();
-            //services.AddTransient<IRepository, ProductRepository>();
-            //services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IBrandRepository, BrandRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddDbContext<FreeSmokyMarketContext>();
             services.AddMvc();
         }

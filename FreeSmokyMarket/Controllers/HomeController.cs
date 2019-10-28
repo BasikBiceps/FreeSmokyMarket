@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.Extensions.Logging;
 using FreeSmokyMarket.Logging;
-using FreeSmokyMarket.Data;
+using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.Data.Entities;
 using FreeSmokyMarket.EF;
 using FreeSmokyMarket.EF.Repositories;
@@ -18,10 +18,24 @@ namespace SmokyMarket.Controllers
     {
         FreeSmokyMarketContext _ctx;
         ILogger _logger;
+        IProductRepository _productRepository;
+        IBrandRepository _brandRepository;
+        IOrderRepository _orderRepository;
+        ICategoryRepository _categoryRepository;
 
-        public HomeController(FreeSmokyMarketContext ctx, ILoggerFactory loggerFactory)
+
+        public HomeController(FreeSmokyMarketContext ctx, 
+            ILoggerFactory loggerFactory, 
+            IProductRepository productRepository, 
+            IBrandRepository brandRepository, 
+            IOrderRepository orderRepository, 
+            ICategoryRepository categoryRepository)
         {
             _ctx = ctx;
+            _productRepository = productRepository;
+            _brandRepository = brandRepository;
+            _orderRepository = orderRepository;
+            _categoryRepository = categoryRepository;
 
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "HomeControllerLogs.txt"));
             _logger = loggerFactory.CreateLogger("FileLogger");
