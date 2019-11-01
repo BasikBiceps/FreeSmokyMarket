@@ -1,0 +1,21 @@
+﻿@using FreeSmokyMarket.Data.Entities
+@model IEnumerable<FreeSmokyMarket.Data.Entities.Category>
+@{
+    ViewData["Title"] = "Free Smoky Market";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/MainPage.css" type="text/css" />
+
+<body>
+    <h3>Товары</h3>
+    <p class="thumb">
+        @foreach (var category in Model)
+        {
+            <div class="pictureSignature">
+                <a href="~/Home/Buy/@category.Id"><img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(category.CategoryPicture)" /></a>
+                @category.CategoryName
+            </div>
+        }
+        </p>
+</body>

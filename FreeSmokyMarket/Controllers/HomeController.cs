@@ -41,7 +41,7 @@ namespace SmokyMarket.Controllers
             _logger = loggerFactory.CreateLogger("FileLogger");
         }
 
-        public IActionResult Index()
+        public IActionResult MainPage()
         {
             return View(_ctx.Categories.ToList());
         }

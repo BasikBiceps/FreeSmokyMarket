@@ -52,7 +52,7 @@ namespace FreeSmokyMarket
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=MainPage}/{id?}");
             });
         }
     }

@@ -32,7 +32,7 @@ namespace FreeSmokyMarket
                 {
                     lock (_lock)
                     {
-                        File.AppendAllText(_filePath, "[" + DateTime.Now.ToString() + "]" + formatter(state, exception) + Environment.NewLine);
+                       // File.AppendAllText(_filePath, "[" + DateTime.Now.ToString() + "]" + formatter(state, exception) + Environment.NewLine);
                     }
                 }
             }

@@ -1,0 +1,30 @@
+﻿body {
+    background-image: url("https://wpapers.ru/wallpapers/3d/Abstractions/14797/1920x1080_%D0%A0%D0%B0%D0%B4%D1%83%D0%B6%D0%BD%D1%8B%D0%B9-%D0%B4%D1%8B%D0%BC.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white
+}
+
+.pictureBorder {
+    border: 3px solid #696969;
+    border-radius: 10%;
+    width: 200px;
+    height: 200px;
+}
+
+.frog p {
+    text-align: center;
+}
+
+.pictureSignature {
+    max-width: 200px;
+}
+
+.pictureSignature p {
+    text-align: center;
+}
+
+.pictureSignature {
+    max-width: 200px;
+}
