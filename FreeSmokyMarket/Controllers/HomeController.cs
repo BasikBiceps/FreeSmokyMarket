@@ -46,13 +46,11 @@ namespace SmokyMarket.Controllers
             return View(_ctx.Categories.ToList());
         }
 
-        [HttpGet]
-        public IActionResult Buy(int id)
+        public IActionResult ShowBrands(int id)
         {
-            _logger.LogInformation("Buy method in Home controller: ID == {0}", id);
+            _logger.LogInformation("ShowBrands method in Home controller: ID == {0}", id);
 
-            ViewBag.TabaccoId = id;
-            return View();
+            return View(_brandRepository.GetAllBrands(id));
         }
 
         [HttpPost]

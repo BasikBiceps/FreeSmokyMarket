@@ -1,0 +1,23 @@
+﻿@model IEnumerable<FreeSmokyMarket.Data.Entities.Brand>
+@{
+    ViewData["Title"] = "Brands";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/MainPage.css" type="text/css" />
+
+<body>
+    <h3>Бренды</h3>
+    <ul class="hr">
+        @foreach (var brand in Model)
+        {
+            <li>
+                <div class="pictureSignature">
+                    <a href="~/Home/ShowBrands/@brand.Id"><img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(brand.BrandPicture)" /></a>
+                    <p><a href="~/Home/ShowBrands/@brand.Id"><p>@brand.BrandName</p></a><br></p>
+                </div>
+            </li>
+        }
+    </ul>
+</body>
+

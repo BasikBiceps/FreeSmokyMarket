@@ -1,19 +1,19 @@
 ﻿body {
-    background-image: url("https://wpapers.ru/wallpapers/3d/Abstractions/14797/1920x1080_%D0%A0%D0%B0%D0%B4%D1%83%D0%B6%D0%BD%D1%8B%D0%B9-%D0%B4%D1%8B%D0%BC.jpg");
-    background-repeat: no-repeat;
+    background-image: url("https://i.gifer.com/F6VQ.gif");
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
     color: white
 }
 
 .pictureBorder {
-    border: 3px solid #696969;
-    border-radius: 10%;
+    border: 5px solid #696969;
+    border-radius: 20%;
     width: 200px;
     height: 200px;
 }
 
-.frog p {
+.pictureSignature p {
     text-align: center;
 }
 
@@ -25,6 +25,27 @@
     text-align: center;
 }
 
+
+    .pictureSignature a {
+        color: white;
+        font-size: 20px;
+        font-style: italic;
+        max-width: 200px;
+    }
+
 .pictureSignature {
     max-width: 200px;
+}
+
+ul.hr {
+    margin: 10px; 
+    padding: 15px; 
+}
+
+ul.hr li {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 3px;
+    line-height: normal;
+    margin-bottom: 15px;
 }

@@ -29,7 +29,39 @@ namespace FreeSmokyMarket.EF
                 BrandName = "Fumari",
                 Products = new List<Product>()
             };
-             
+
+            Image brand1Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\fumari.jpg");
+            System.IO.MemoryStream brand1ImageMemoryStream = new System.IO.MemoryStream();
+            brand1Image.Save(brand1ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            brand1.BrandPicture = brand1ImageMemoryStream.ToArray();
+            brand1ImageMemoryStream.Dispose();
+
+            var brand2 = new Brand
+            {
+                Category = category1,
+                BrandName = "Dark Side",
+                Products = new List<Product>()
+            };
+
+            Image brand2Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\darkside.jpg");
+            System.IO.MemoryStream brand2ImageMemoryStream = new System.IO.MemoryStream();
+            brand2Image.Save(brand2ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            brand2.BrandPicture = brand2ImageMemoryStream.ToArray();
+            brand2ImageMemoryStream.Dispose();
+
+            var brand3 = new Brand
+            {
+                Category = category1,
+                BrandName = "Serbetli",
+                Products = new List<Product>()
+            };
+
+            Image brand3Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\serbetli.jpg");
+            System.IO.MemoryStream brand3ImageMemoryStream = new System.IO.MemoryStream();
+            brand3Image.Save(brand3ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            brand3.BrandPicture = brand3ImageMemoryStream.ToArray();
+            brand3ImageMemoryStream.Dispose();
+
             var tobacco = new Product
             {
                 Brand = brand1,
@@ -41,6 +73,8 @@ namespace FreeSmokyMarket.EF
 
             ctx.Categories.Add(category1);
             ctx.Brands.Add(brand1);
+            ctx.Brands.Add(brand2);
+            ctx.Brands.Add(brand3);
             ctx.Products.Add(tobacco);
 
             var category2 = new Category { CategoryName = "Coals" };

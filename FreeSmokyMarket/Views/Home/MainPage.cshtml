@@ -9,13 +9,18 @@
 
 <body>
     <h3>Товары</h3>
-    <p class="thumb">
+
+    <ul class="hr">
         @foreach (var category in Model)
         {
-            <div class="pictureSignature">
-                <a href="~/Home/Buy/@category.Id"><img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(category.CategoryPicture)" /></a>
-                @category.CategoryName
-            </div>
+            <li>
+                <div class="pictureSignature">
+                    <a href="~/Home/ShowBrands/@category.Id">
+                        <img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(category.CategoryPicture)">
+                        <p>@category.CategoryName</p>
+                    </a>
+                </div>
+            </li>
         }
-        </p>
+    </ul>
 </body>
