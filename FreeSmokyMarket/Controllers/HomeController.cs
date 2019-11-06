@@ -53,6 +53,20 @@ namespace SmokyMarket.Controllers
             return View(_brandRepository.GetAllBrands(id));
         }
 
+        public IActionResult ShowProducts(int id)
+        {
+            _logger.LogInformation("ShowProducts method in Home controller: ID == {0}", id);
+
+            return View(_productRepository.GetAllProducts(id));
+        }
+
+        public IActionResult ProductDescription(int id)
+        {
+            _logger.LogInformation("ProductDescription method in Home controller: ID == {0}", id);
+
+            return View(_productRepository.GetProduct(id));
+        }
+
         [HttpPost]
         public string Buy(Order order)
         {

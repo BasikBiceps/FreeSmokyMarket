@@ -20,6 +20,14 @@ namespace FreeSmokyMarket.EF.Repositories
             }
         }
 
+        public Product GetProduct(int productId)
+        {
+            using (var ctx = new FreeSmokyMarketContext())
+            {
+                return ctx.Products.Include(cp => cp.Brand).Where(cp => cp.Id == productId).FirstOrDefault();
+            }
+        }
+
         public void CreateProduct(Product product)
         {
             using (var ctx = new FreeSmokyMarketContext())

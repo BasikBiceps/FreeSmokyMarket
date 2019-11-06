@@ -2,10 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ApplicationIcon>smoke-icon-27.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\lib\bootstrap\dist\css\MainPage.css" />
+    <None Include="wwwroot\Images\basket.png" />
+    <None Include="wwwroot\Images\Coals.jpeg" />
+    <None Include="wwwroot\Images\darkside.jpg" />
+    <None Include="wwwroot\Images\fumari.jpg" />
+    <None Include="wwwroot\Images\fumari_apple.jpg" />
+    <None Include="wwwroot\Images\fumari_cherry.jpg" />
+    <None Include="wwwroot\Images\fumari_chocolate_mint_ice_cream.jpg" />
+    <None Include="wwwroot\Images\fumari_grape.jpg" />
+    <None Include="wwwroot\Images\fumari_lemon.jpg" />
+    <None Include="wwwroot\Images\fumari_pineapple_coconut.jpg" />
+    <None Include="wwwroot\Images\fumari_raspberry.jpg" />
+    <None Include="wwwroot\Images\Hookahs.jpeg" />
+    <None Include="wwwroot\Images\serbetli.jpg" />
+    <None Include="wwwroot\Images\tobacco.jpg" />
+    <None Include="wwwroot\Images\x_F6VQ.gif" />
+    <None Include="wwwroot\css\General.css" />
   </ItemGroup>
 
   <ItemGroup>

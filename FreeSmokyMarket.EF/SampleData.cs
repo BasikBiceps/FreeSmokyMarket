@@ -36,6 +36,93 @@ namespace FreeSmokyMarket.EF
             brand1.BrandPicture = brand1ImageMemoryStream.ToArray();
             brand1ImageMemoryStream.Dispose();
 
+            Product product1 = new Product();
+            product1.Amount = 3;
+            product1.Brand = brand1;
+            product1.Description = "Cherry";
+            product1.Price = 200;
+            Image product1Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\fumari_cherry.jpg");
+            System.IO.MemoryStream product1ImageMemoryStream = new System.IO.MemoryStream();
+            product1Image.Save(product1ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            product1.ProductPicture = product1ImageMemoryStream.ToArray();
+            product1ImageMemoryStream.Dispose();
+
+
+            Product product2 = new Product();
+            product2.Amount = 3;
+            product2.Brand = brand1;
+            product2.Description = "Chocolate-mint ice-cream";
+            product2.Price = 200;
+            Image product2Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\fumari_chocolate_mint_ice_cream.jpg");
+            System.IO.MemoryStream product2ImageMemoryStream = new System.IO.MemoryStream();
+            product2Image.Save(product2ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            product2.ProductPicture = product2ImageMemoryStream.ToArray();
+            product2ImageMemoryStream.Dispose();
+
+
+            Product product3 = new Product();
+            product3.Amount = 3;
+            product3.Brand = brand1;
+            product3.Description = "Raspberry";
+            product3.Price = 200;
+            Image product3Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\fumari_raspberry.jpg");
+            System.IO.MemoryStream product3ImageMemoryStream = new System.IO.MemoryStream();
+            product3Image.Save(product3ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            product3.ProductPicture = product3ImageMemoryStream.ToArray();
+            product3ImageMemoryStream.Dispose();
+
+            Product product4 = new Product();
+            product4.Amount = 3;
+            product4.Brand = brand1;
+            product4.Description = "Pineapple and coconut";
+            product4.Price = 200;
+            Image product4Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\fumari_pineapple_coconut.jpg");
+            System.IO.MemoryStream product4ImageMemoryStream = new System.IO.MemoryStream();
+            product4Image.Save(product4ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            product4.ProductPicture = product4ImageMemoryStream.ToArray();
+            product4ImageMemoryStream.Dispose();
+
+            Product product5 = new Product();
+            product5.Amount = 3;
+            product5.Brand = brand1;
+            product5.Description = "Apple";
+            product5.Price = 200;
+            Image product5Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\fumari_apple.jpg");
+            System.IO.MemoryStream product5ImageMemoryStream = new System.IO.MemoryStream();
+            product5Image.Save(product5ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            product5.ProductPicture = product5ImageMemoryStream.ToArray();
+            product5ImageMemoryStream.Dispose();
+
+            Product product6 = new Product();
+            product6.Amount = 3;
+            product6.Brand = brand1;
+            product6.Description = "Grape";
+            product6.Price = 200;
+            Image product6Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\fumari_grape.jpg");
+            System.IO.MemoryStream product6ImageMemoryStream = new System.IO.MemoryStream();
+            product6Image.Save(product6ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            product6.ProductPicture = product6ImageMemoryStream.ToArray();
+            product6ImageMemoryStream.Dispose();
+
+            Product product7 = new Product();
+            product7.Amount = 3;
+            product7.Brand = brand1;
+            product7.Description = "Lemon";
+            product7.Price = 200;
+            Image product7Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\Images\\fumari_lemon.jpg");
+            System.IO.MemoryStream product7ImageMemoryStream = new System.IO.MemoryStream();
+            product7Image.Save(product7ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            product7.ProductPicture = product7ImageMemoryStream.ToArray();
+            product7ImageMemoryStream.Dispose();
+
+            brand1.Products.Add(product1);
+            brand1.Products.Add(product2);
+            brand1.Products.Add(product3);
+            brand1.Products.Add(product4);
+            brand1.Products.Add(product5);
+            brand1.Products.Add(product6);
+            brand1.Products.Add(product7);
+
             var brand2 = new Brand
             {
                 Category = category1,
@@ -62,20 +149,10 @@ namespace FreeSmokyMarket.EF
             brand3.BrandPicture = brand3ImageMemoryStream.ToArray();
             brand3ImageMemoryStream.Dispose();
 
-            var tobacco = new Product
-            {
-                Brand = brand1,
-                Amount = 10,
-                Description = "Strength: light;\nTaste: blackBerry;",
-                Price = 500
-            };
-            brand1.Products.Add(tobacco);
-
             ctx.Categories.Add(category1);
             ctx.Brands.Add(brand1);
             ctx.Brands.Add(brand2);
             ctx.Brands.Add(brand3);
-            ctx.Products.Add(tobacco);
 
             var category2 = new Category { CategoryName = "Coals" };
 

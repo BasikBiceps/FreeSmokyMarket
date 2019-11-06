@@ -1,0 +1,14 @@
+﻿@model FreeSmokyMarket.Data.Entities.Product
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/General.css" type="text/css" />
+
+<body>
+    <h3>Описание</h3>
+    <p>@Model.Brand.BrandName</p>
+    <p>@Model.Description</p>
+    <p>@Model.Price грн.</p>
+</body>

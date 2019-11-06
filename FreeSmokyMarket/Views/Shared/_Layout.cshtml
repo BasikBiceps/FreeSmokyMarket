@@ -5,14 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/General.css" type="text/css" />
 </head>
 <body>
     <!--меню-->
-    <nav class="navbar navbar-inverse">
-        <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><img class="basket" src="http://www.transparentpng.com/thumb/smoke/nSVNQD-smoke-icon-clipart.png"></a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">FreeSmokyMarket</a>
+            </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a href="~/Home/MainPage" class="navbar-brand">Главная</a></li>
+                    <li><a href="~/Home/MainPage" class="navbar-brand">Main</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="~/Home/MainPage" class="navbar-brand">About</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="~/Home/MainPage" class="navbar-brand">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="~/Home/MainPage"><img class="basket" src="https://ecaro.ru/local/templates/ecaro/img/u12.png"></a></li>
                 </ul>
             </div>
         </div>

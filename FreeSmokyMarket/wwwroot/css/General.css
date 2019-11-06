@@ -1,9 +1,10 @@
 ﻿body {
-    background-image: url("https://i.gifer.com/F6VQ.gif");
+    background-image: url("https://images4.alphacoders.com/230/230064.jpg");
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    color: white
+    font-family: Bookman, URW Bookman L, serif;
+    color: white;
 }
 
 .pictureBorder {
@@ -25,12 +26,12 @@
     text-align: center;
 }
 
-
     .pictureSignature a {
         color: white;
         font-size: 20px;
         font-style: italic;
         max-width: 200px;
+        text-decoration: none;
     }
 
 .pictureSignature {
@@ -48,4 +49,9 @@ ul.hr li {
     padding: 3px;
     line-height: normal;
     margin-bottom: 15px;
+}
+
+.basket {
+    width: 25px;
+    height: 25px;
 }

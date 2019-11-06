@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" href="~/lib/bootstrap/dist/css/MainPage.css" type="text/css" />
+<link rel="stylesheet" href="~/css/General.css" type="text/css" />
 
 <body>
     <h3>Бренды</h3>
@@ -13,8 +13,8 @@
         {
             <li>
                 <div class="pictureSignature">
-                    <a href="~/Home/ShowBrands/@brand.Id"><img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(brand.BrandPicture)" /></a>
-                    <p><a href="~/Home/ShowBrands/@brand.Id"><p>@brand.BrandName</p></a><br></p>
+                    <a href="~/Home/ShowProducts/@brand.Id"><img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(brand.BrandPicture)" /></a>
+                    <p><a href="~/Home/ShowProducts/@brand.Id"><p>@brand.BrandName</p></a><br></p>
                 </div>
             </li>
         }
