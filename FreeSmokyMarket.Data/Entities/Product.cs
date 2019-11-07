@@ -13,7 +13,7 @@ namespace FreeSmokyMarket.Data.Entities
             public int Amount { get; set; }
             public string Description { get; set; }
             public byte[] ProductPicture { get; set; }
+            public Category Category { get; set; }
             public Brand Brand { get; set; }
-            public Basket Basket { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreeSmokyMarket.EF.Migrations
 {
     [DbContext(typeof(FreeSmokyMarketContext))]
-    [Migration("20191031153531_2")]
-    partial class _2
+    [Migration("20191107162959_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,6 +108,8 @@ namespace FreeSmokyMarket.EF.Migrations
 
                     b.Property<int?>("BrandId");
 
+                    b.Property<int?>("CategoryId");
+
                     b.Property<string>("Description");
 
                     b.Property<decimal>("Price")
@@ -121,13 +123,15 @@ namespace FreeSmokyMarket.EF.Migrations
 
                     b.HasIndex("BrandId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Brand", b =>
                 {
                     b.HasOne("FreeSmokyMarket.Data.Entities.Category", "Category")
-                        .WithMany("Brands")
+                        .WithMany()
                         .HasForeignKey("CategoryId");
                 });
 
@@ -141,13 +145,17 @@ namespace FreeSmokyMarket.EF.Migrations
 
             modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Product", b =>
                 {
-                    b.HasOne("FreeSmokyMarket.Data.Entities.Basket", "Basket")
+                    b.HasOne("FreeSmokyMarket.Data.Entities.Basket")
                         .WithMany("Products")
                         .HasForeignKey("BasketId");
 
                     b.HasOne("FreeSmokyMarket.Data.Entities.Brand", "Brand")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("BrandId");
+
+                    b.HasOne("FreeSmokyMarket.Data.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
                 });
 #pragma warning restore 612, 618
         }

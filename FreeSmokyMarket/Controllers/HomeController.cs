@@ -12,6 +12,10 @@ using FreeSmokyMarket.Data.Entities;
 using FreeSmokyMarket.EF;
 using FreeSmokyMarket.EF.Repositories;
 
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Http;
+
+
 namespace SmokyMarket.Controllers
 {
     public class HomeController : Controller
@@ -43,6 +47,11 @@ namespace SmokyMarket.Controllers
 
         public IActionResult MainPage()
         {
+            if (!HttpContext.Session.Keys.Contains("SessionId"))
+                HttpContext.Session.SetString("SessionId", HttpContext.Session.Id);
+
+            ViewData["test"] = HttpContext.Session.Id;
+
             return View(_ctx.Categories.ToList());
         }
 

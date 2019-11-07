@@ -32,6 +32,15 @@ namespace FreeSmokyMarket
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddDbContext<FreeSmokyMarketContext>();
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Name = ".MyApp.Session";
+                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+            });
+
             services.AddMvc();
         }
 
@@ -47,6 +56,7 @@ namespace FreeSmokyMarket
             }
             
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

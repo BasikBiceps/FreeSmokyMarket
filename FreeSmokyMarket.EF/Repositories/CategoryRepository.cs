@@ -18,14 +18,6 @@ namespace FreeSmokyMarket.EF.Repositories
             }
         }
 
-        public Category GetCategoryDetails(int categoryId)
-        {
-            using (var ctx = new FreeSmokyMarketContext())
-            {
-                return ctx.Categories.Include(c => c.Brands).ThenInclude(b => b.Products).Where(c => c.Id == categoryId).FirstOrDefault();
-            }
-        }
-
         public void CreateCategory(Category category)
         {
             using (var ctx = new FreeSmokyMarketContext())
