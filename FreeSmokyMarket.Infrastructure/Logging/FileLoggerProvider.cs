@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace FreeSmokyMarket
+namespace FreeSmokyMarket.Infrastructure.Logging
 {
     public class FileLoggerProvider : ILoggerProvider
     {

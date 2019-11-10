@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace FreeSmokyMarket
+namespace FreeSmokyMarket.Infrastructure.Logging
 {
     public class FileLogger : ILogger
     {

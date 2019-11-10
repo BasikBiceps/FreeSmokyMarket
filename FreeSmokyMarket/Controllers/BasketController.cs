@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-using FreeSmokyMarket.Logging;
 using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.Data.Entities;
+using FreeSmokyMarket.Infrastructure.Logging;
 
 namespace FreeSmokyMarket.Controllers
 {

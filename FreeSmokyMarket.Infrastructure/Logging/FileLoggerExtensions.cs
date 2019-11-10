@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace FreeSmokyMarket.Logging
+namespace FreeSmokyMarket.Infrastructure.Logging
 {
     public static class FileLoggerExtensions
     {

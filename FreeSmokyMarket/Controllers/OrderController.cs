@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 
-using FreeSmokyMarket.Logging;
+using FreeSmokyMarket.Infrastructure.Logging;
 using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.Data.Entities;
 using FreeSmokyMarket.EF;
