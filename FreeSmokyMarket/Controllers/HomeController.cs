@@ -14,9 +14,9 @@ using FreeSmokyMarket.EF.Repositories;
 
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Http;
+using System.Text.Json;
 
-
-namespace SmokyMarket.Controllers
+namespace FreeSmokyMarket.Controllers
 {
     public class HomeController : Controller
     {
@@ -47,11 +47,6 @@ namespace SmokyMarket.Controllers
 
         public IActionResult MainPage()
         {
-            if (!HttpContext.Session.Keys.Contains("SessionId"))
-                HttpContext.Session.SetString("SessionId", HttpContext.Session.Id);
-
-            ViewData["test"] = HttpContext.Session.Id;
-
             return View(_ctx.Categories.ToList());
         }
 
@@ -69,6 +64,25 @@ namespace SmokyMarket.Controllers
             return View(_productRepository.GetAllProducts(id));
         }
 
+        public IActionResult ShowBasket()
+        {
+            var selectedProductsId = HttpContext.Session.Get<List<int>>("SelectedProducts");
+
+            if (selectedProductsId == null)
+            {
+                selectedProductsId = new List<int>();
+            }
+
+            var selectedProducts = new List<Product>();
+
+            foreach (var el in selectedProductsId)
+            {
+                selectedProducts.Add(_productRepository.GetProduct(el));
+            }
+
+            return View(selectedProducts);
+        }
+
         public IActionResult ProductDescription(int id)
         {
             _logger.LogInformation("ProductDescription method in Home controller: ID == {0}", id);
@@ -76,18 +90,26 @@ namespace SmokyMarket.Controllers
             return View(_productRepository.GetProduct(id));
         }
 
-        [HttpPost]
-        public string Buy(Order order)
+        public string Reserve(int id)
         {
-            _logger.LogInformation("Orders fields: \nFirstName: {0}\nLastName: {0}\nPhoneNumber: {0}\nAddress: {0}", 
-                order.FirstName, 
-                order.LastName, 
-                order.PhoneNumber,
-                order.Address);
+            var selectedProducts = HttpContext.Session.Get<List<int>>("SelectedProducts");
+            
+            if (selectedProducts == null)
+            {
+                selectedProducts = new List<int>();
+            }
+            
+            selectedProducts.Add(id);
 
-            _ctx.Orders.Add(order);
-            _ctx.SaveChanges();
-            return "Спасибо, " + order.FirstName + " " + order.LastName + ", за покупку!";
+            HttpContext.Session.Set("SelectedProducts", selectedProducts);
+
+            return "Product added to the basket";
         }
+
+        public IActionResult Buy()
+        {
+            return View();
+        }
+        
     }
 }
