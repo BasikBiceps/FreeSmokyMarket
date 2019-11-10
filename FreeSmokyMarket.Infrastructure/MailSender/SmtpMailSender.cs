@@ -4,17 +4,18 @@ using System.Text;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Net;
+using FreeSmokyMarket.Infrastructure.ISender;
 
 namespace FreeSmokyMarket.Infrastructure.MailSender
 {
-    static public class MailSender
+    public class SmtpMailSender : IMailSender
     {
-        public static async Task SendEmailAsync(string sender, 
+        public async Task SendEmailAsync(string sender, 
                                                  string password, 
                                                  string recipient, 
                                                  string message,
-                                                 string senderName = "FreeSmokyMarketMailSender",
-                                                 string subject = "Placed order")
+                                                 string senderName,
+                                                 string subject)
         {
             MailAddress from = new MailAddress(sender, "FreeSmokyMarketMailSender");
             MailAddress to = new MailAddress(recipient);

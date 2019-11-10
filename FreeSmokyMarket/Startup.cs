@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.EF.Repositories;
 using FreeSmokyMarket.EF;
+using FreeSmokyMarket.Infrastructure.ISender;
+using FreeSmokyMarket.Infrastructure.MailSender;
 
 namespace FreeSmokyMarket
 {
@@ -32,6 +34,7 @@ namespace FreeSmokyMarket
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddDbContext<FreeSmokyMarketContext>();
+            services.AddTransient<IMailSender, SmtpMailSender>();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
