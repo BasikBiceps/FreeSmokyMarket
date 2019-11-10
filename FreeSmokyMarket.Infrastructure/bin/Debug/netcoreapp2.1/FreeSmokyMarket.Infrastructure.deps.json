@@ -1,0 +1,77 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": "1bf9956a6a09017064a0da7eff22b78567b4747b"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "FreeSmokyMarket.Infrastructure/1.0.0": {
+        "dependencies": {
+          "MailSystem.NET": "2.0.1"
+        },
+        "runtime": {
+          "FreeSmokyMarket.Infrastructure.dll": {}
+        }
+      },
+      "MailSystem.NET/2.0.1": {
+        "runtime": {
+          "lib/ActiveUp.Net.Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/ActiveUp.Net.Dns.dll": {
+            "assemblyVersion": "5.0.3454.364",
+            "fileVersion": "5.0.3454.364"
+          },
+          "lib/ActiveUp.Net.Groupware.dll": {
+            "assemblyVersion": "5.0.3454.364",
+            "fileVersion": "5.0.3454.364"
+          },
+          "lib/ActiveUp.Net.Imap4.dll": {
+            "assemblyVersion": "5.0.3454.364",
+            "fileVersion": "5.0.3454.364"
+          },
+          "lib/ActiveUp.Net.Mail.dll": {
+            "assemblyVersion": "5.0.3454.364",
+            "fileVersion": "5.0.3454.364"
+          },
+          "lib/ActiveUp.Net.Nntp.dll": {
+            "assemblyVersion": "5.0.3454.364",
+            "fileVersion": "5.0.3454.364"
+          },
+          "lib/ActiveUp.Net.OpenPGP.dll": {
+            "assemblyVersion": "5.0.3454.364",
+            "fileVersion": "5.0.3454.364"
+          },
+          "lib/ActiveUp.Net.Pop3.dll": {
+            "assemblyVersion": "5.0.3454.364",
+            "fileVersion": "5.0.3454.364"
+          },
+          "lib/ActiveUp.Net.Smtp.dll": {
+            "assemblyVersion": "5.0.3454.364",
+            "fileVersion": "5.0.3454.364"
+          },
+          "lib/ActiveUp.Net.WhoIs.dll": {
+            "assemblyVersion": "5.0.3454.364",
+            "fileVersion": "5.0.3454.364"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FreeSmokyMarket.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MailSystem.NET/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZIbL0InnWbhze/NJ1AA0rR6lMXPu+Oy1xbIbbnHTtb18vBTFNOGhMNf9BzTLLmvu061Bsdt4mQgtxt67YA4qpw==",
+      "path": "mailsystem.net/2.0.1",
+      "hashPath": "mailsystem.net.2.0.1.nupkg.sha512"
+    }
+  }
+}

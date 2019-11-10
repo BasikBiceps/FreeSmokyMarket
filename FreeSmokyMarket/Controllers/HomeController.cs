@@ -47,6 +47,7 @@ namespace FreeSmokyMarket.Controllers
 
         public IActionResult MainPage()
         {
+            Infrastructure.MailSender.MailSender.SendEmailAsync("freesmokymarket@gmail.com", "smokyphilip", "nokem.noks@gmail.com", "Test");
             return View(_ctx.Categories.ToList());
         }
 
