@@ -64,7 +64,7 @@ namespace FreeSmokyMarket.Controllers
                 + "\nAddress: "
                 + order.Address
                 + "\nOrderId: "
-                + order.OrderId);
+                + order.Id);
 
             return "Спасибо, " + order.FirstName + " " + order.LastName + ", за покупку!";
         }

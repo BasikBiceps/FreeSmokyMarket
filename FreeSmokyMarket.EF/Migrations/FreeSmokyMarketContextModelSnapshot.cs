@@ -25,11 +25,13 @@ namespace FreeSmokyMarket.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("OrderId");
+
                     b.Property<int>("SessionId");
 
-                    b.Property<DateTime>("SessionStart");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Baskets");
                 });
@@ -44,11 +46,7 @@ namespace FreeSmokyMarket.EF.Migrations
 
                     b.Property<byte[]>("BrandPicture");
 
-                    b.Property<int?>("CategoryId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Brands");
                 });
@@ -70,13 +68,11 @@ namespace FreeSmokyMarket.EF.Migrations
 
             modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Order", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address");
-
-                    b.Property<int>("BasketId");
 
                     b.Property<string>("FirstName");
 
@@ -86,10 +82,7 @@ namespace FreeSmokyMarket.EF.Migrations
 
                     b.Property<string>("PhoneNumber");
 
-                    b.HasKey("OrderId");
-
-                    b.HasIndex("BasketId")
-                        .IsUnique();
+                    b.HasKey("Id");
 
                     b.ToTable("Orders");
                 });
@@ -102,11 +95,9 @@ namespace FreeSmokyMarket.EF.Migrations
 
                     b.Property<int>("Amount");
 
-                    b.Property<int?>("BasketId");
+                    b.Property<int>("BrandId");
 
-                    b.Property<int?>("BrandId");
-
-                    b.Property<int?>("CategoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<string>("Description");
 
@@ -117,8 +108,6 @@ namespace FreeSmokyMarket.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BasketId");
-
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
@@ -126,34 +115,52 @@ namespace FreeSmokyMarket.EF.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Brand", b =>
+            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.PurchasesItem", b =>
                 {
-                    b.HasOne("FreeSmokyMarket.Data.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int>("BasketId");
+
+                    b.Property<int>("ProductId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketId");
+
+                    b.ToTable("PurchasesItems");
                 });
 
-            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Order", b =>
+            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Basket", b =>
                 {
-                    b.HasOne("FreeSmokyMarket.Data.Entities.Basket", "Basket")
-                        .WithOne("Order")
-                        .HasForeignKey("FreeSmokyMarket.Data.Entities.Order", "BasketId")
+                    b.HasOne("FreeSmokyMarket.Data.Entities.Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Product", b =>
                 {
+                    b.HasOne("FreeSmokyMarket.Data.Entities.Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FreeSmokyMarket.Data.Entities.Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.PurchasesItem", b =>
+                {
                     b.HasOne("FreeSmokyMarket.Data.Entities.Basket")
-                        .WithMany("Products")
-                        .HasForeignKey("BasketId");
-
-                    b.HasOne("FreeSmokyMarket.Data.Entities.Brand", "Brand")
                         .WithMany()
-                        .HasForeignKey("BrandId");
-
-                    b.HasOne("FreeSmokyMarket.Data.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

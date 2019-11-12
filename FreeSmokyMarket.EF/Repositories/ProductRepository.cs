@@ -16,7 +16,7 @@ namespace FreeSmokyMarket.EF.Repositories
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                return ctx.Products.Include(cp => cp.Brand).Where(cp => cp.Brand.Id == brandId).ToList();
+                return ctx.Products.Where(p => p.BrandId == brandId).ToList();
             }
         }
 
@@ -24,7 +24,7 @@ namespace FreeSmokyMarket.EF.Repositories
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                return ctx.Products.Include(cp => cp.Brand).Where(cp => cp.Id == productId).FirstOrDefault();
+                return ctx.Products.Where(p => p.Id == productId).FirstOrDefault();
             }
         }
 

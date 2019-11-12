@@ -14,7 +14,23 @@ namespace FreeSmokyMarket.EF.Repositories
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                return ctx.Brands.Where(b => b.Category.Id == categoryId).ToList();
+                var brandIdHashSet = ctx.Products.Where(p => p.CategoryId == categoryId).Select(p => p.BrandId).ToHashSet();
+                var brandList = new List<Brand>();
+
+                foreach (var el in brandIdHashSet)
+                {
+                    brandList.Add(GetBrand(el));
+                }
+
+                return brandList;
+            }
+        }
+
+        public Brand GetBrand(int brandId)
+        {
+            using (var ctx = new FreeSmokyMarketContext())
+            {
+                return ctx.Brands.Where(b => b.Id == brandId).FirstOrDefault();
             }
         }
 

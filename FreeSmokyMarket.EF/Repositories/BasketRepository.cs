@@ -2,43 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using FreeSmokyMarket.Data.Entities;
-using FreeSmokyMarket.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+
+using FreeSmokyMarket.Data.Repositories;
+using FreeSmokyMarket.Data.Entities;
 
 namespace FreeSmokyMarket.EF.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    public class BasketRepository : IBasketRepository
     {
-        public void CreateOrder(Order order)
+        public Basket GetBasket(int orderId)
         {
             using (var context = new FreeSmokyMarketContext())
             {
-                context.Orders.Add(order);
+                return context.Baskets.Where(b => b.OrderId == orderId).FirstOrDefault();
             }
         }
 
-        public void DeleteOrder(Order order)
+        public void CreateBasket(Basket basket)
         {
             using (var context = new FreeSmokyMarketContext())
             {
-                context.Orders.Remove(order);
+                context.Baskets.Add(basket);
             }
         }
 
-        public List<Order> GetAllOrders()
+        public void DeleteBasket(Basket basket)
         {
             using (var context = new FreeSmokyMarketContext())
             {
-                return context.Orders.ToList();
+                context.Baskets.Remove(basket);
             }
         }
 
-        public Order GetOrder(int orderId)
+        public void UpdateBasket(Basket basket)
         {
             using (var context = new FreeSmokyMarketContext())
             {
-                return context.Orders.Where(o => o.Id == orderId).FirstOrDefault();
+                context.Baskets.Update(basket);
             }
         }
     }

@@ -8,6 +8,7 @@ namespace FreeSmokyMarket.Data.Repositories
     public interface IBrandRepository
     {
         List<Brand> GetAllBrands(int categoryId);
+        Brand GetBrand(int brandId);
         void CreateBrand(Brand brand);
         void UpdateBrand(Brand brand);
         void DeleteBrand(Brand brand);

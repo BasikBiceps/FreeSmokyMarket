@@ -26,7 +26,6 @@ namespace FreeSmokyMarket.EF
             var brand1 = new Brand
             {
                 BrandName = "Fumari",
-                Category = category1,
             };
 
             Image brand1Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\fumari.jpg");
@@ -37,10 +36,10 @@ namespace FreeSmokyMarket.EF
 
             Product product1 = new Product();
             product1.Amount = 3;
-            product1.Brand = brand1;
+            product1.BrandId = 1;
             product1.Description = "Cherry";
             product1.Price = 200;
-            product1.Category = category1;
+            product1.CategoryId = 1;
             Image product1Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\fumari_cherry.jpg");
             System.IO.MemoryStream product1ImageMemoryStream = new System.IO.MemoryStream();
             product1Image.Save(product1ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -50,10 +49,10 @@ namespace FreeSmokyMarket.EF
 
             Product product2 = new Product();
             product2.Amount = 3;
-            product2.Brand = brand1;
+            product2.BrandId = 1;
             product2.Description = "Chocolate-mint ice-cream";
             product2.Price = 200;
-            product2.Category = category1;
+            product2.CategoryId = 1;
             Image product2Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\fumari_chocolate_mint_ice_cream.jpg");
             System.IO.MemoryStream product2ImageMemoryStream = new System.IO.MemoryStream();
             product2Image.Save(product2ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -63,10 +62,10 @@ namespace FreeSmokyMarket.EF
 
             Product product3 = new Product();
             product3.Amount = 3;
-            product3.Brand = brand1;
+            product3.BrandId = 1;
             product3.Description = "Raspberry";
             product3.Price = 200;
-            product3.Category = category1;
+            product3.CategoryId = 1;
             Image product3Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\fumari_raspberry.jpg");
             System.IO.MemoryStream product3ImageMemoryStream = new System.IO.MemoryStream();
             product3Image.Save(product3ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -75,10 +74,10 @@ namespace FreeSmokyMarket.EF
 
             Product product4 = new Product();
             product4.Amount = 3;
-            product4.Brand = brand1;
+            product4.BrandId = 1;
             product4.Description = "Pineapple and coconut";
             product4.Price = 200;
-            product4.Category = category1;
+            product4.CategoryId = 1;
             Image product4Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\fumari_pineapple_coconut.jpg");
             System.IO.MemoryStream product4ImageMemoryStream = new System.IO.MemoryStream();
             product4Image.Save(product4ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -87,10 +86,10 @@ namespace FreeSmokyMarket.EF
 
             Product product5 = new Product();
             product5.Amount = 3;
-            product5.Brand = brand1;
+            product5.BrandId = 1;
             product5.Description = "Apple";
             product5.Price = 200;
-            product5.Category = category1;
+            product5.CategoryId = 1;
             Image product5Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\fumari_apple.jpg");
             System.IO.MemoryStream product5ImageMemoryStream = new System.IO.MemoryStream();
             product5Image.Save(product5ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -99,10 +98,10 @@ namespace FreeSmokyMarket.EF
 
             Product product6 = new Product();
             product6.Amount = 3;
-            product6.Brand = brand1;
+            product6.BrandId = 1;
             product6.Description = "Grape";
             product6.Price = 200;
-            product6.Category = category1;
+            product6.CategoryId = 1;
             Image product6Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\fumari_grape.jpg");
             System.IO.MemoryStream product6ImageMemoryStream = new System.IO.MemoryStream();
             product6Image.Save(product6ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -111,28 +110,19 @@ namespace FreeSmokyMarket.EF
 
             Product product7 = new Product();
             product7.Amount = 3;
-            product7.Brand = brand1;
+            product7.BrandId = 1;
             product7.Description = "Lemon";
             product7.Price = 200;
-            product7.Category = category1;
+            product7.CategoryId = 1;
             Image product7Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\fumari_lemon.jpg");
             System.IO.MemoryStream product7ImageMemoryStream = new System.IO.MemoryStream();
             product7Image.Save(product7ImageMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
             product7.ProductPicture = product7ImageMemoryStream.ToArray();
             product7ImageMemoryStream.Dispose();
 
-            ctx.Products.Add(product1);
-            ctx.Products.Add(product2);
-            ctx.Products.Add(product3);
-            ctx.Products.Add(product4);
-            ctx.Products.Add(product5);
-            ctx.Products.Add(product6);
-            ctx.Products.Add(product7);
-
             var brand2 = new Brand
             {
                 BrandName = "Dark Side",
-                Category = category1
             };
 
             Image brand2Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\darkside.jpg");
@@ -144,7 +134,6 @@ namespace FreeSmokyMarket.EF
             var brand3 = new Brand
             {
                 BrandName = "Serbetli",
-                Category = category1
             };
 
             Image brand3Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\serbetli.jpg");
@@ -173,6 +162,14 @@ namespace FreeSmokyMarket.EF
             category3Image.Save(memoryStream3, System.Drawing.Imaging.ImageFormat.Jpeg);
             category3.CategoryPicture = memoryStream3.ToArray();
             memoryStream3.Dispose();
+
+            ctx.Products.Add(product1);
+            ctx.Products.Add(product2);
+            ctx.Products.Add(product3);
+            ctx.Products.Add(product4);
+            ctx.Products.Add(product5);
+            ctx.Products.Add(product6);
+            ctx.Products.Add(product7);
 
             ctx.Categories.Add(category2);
             ctx.Categories.Add(category3);

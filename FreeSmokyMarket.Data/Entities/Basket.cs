@@ -11,11 +11,7 @@ namespace FreeSmokyMarket.Data.Entities
     public class Basket
     {
         public int Id { get; set; }
-        public int SessionId { set; get; }
-        public DateTime SessionStart { get; set; }
-
-        public Order Order { get; set; }
-
-        public List<Product> Products { get; set; }
+        public int SessionId { get; set; }
+        public int OrderId { get; set; }
     }
 }

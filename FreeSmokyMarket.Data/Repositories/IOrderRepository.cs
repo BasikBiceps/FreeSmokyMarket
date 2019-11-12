@@ -11,11 +11,6 @@ namespace FreeSmokyMarket.Data.Repositories
         void CreateOrder(Order order);
         void DeleteOrder(Order order);
         List<Order> GetAllOrders();
-        Order GetOrder(int id);
-
-        Basket GetBasket(int orderId);
-        void CreateBasket(Basket basket);
-        void DeleteBasket(Basket basket);
-        void UpdateBasket(Basket basket);
+        Order GetOrder(int orderId);
     }
 }

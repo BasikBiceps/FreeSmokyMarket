@@ -19,6 +19,7 @@ namespace FreeSmokyMarket.EF
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<PurchasesItem> PurchasesItems { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -29,11 +30,26 @@ namespace FreeSmokyMarket.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().Property(cp => cp.Price).HasColumnType("decimal(18, 2)");
-            
-            modelBuilder.Entity<Order>()
-                .HasOne(o => o.Basket)
-                .WithOne(b => b.Order)
-                .HasForeignKey<Order>(o => o.BasketId);
+
+            modelBuilder.Entity<Product>()
+                .HasOne<Category>()
+                .WithMany()
+                .HasForeignKey(p => p.CategoryId);
+
+            modelBuilder.Entity<Product>()
+                .HasOne<Brand>()
+                .WithMany()
+                .HasForeignKey(p => p.BrandId);
+
+            modelBuilder.Entity<PurchasesItem>()
+                .HasOne<Basket>()
+                .WithMany()
+                .HasForeignKey(pt => pt.BasketId);
+
+            modelBuilder.Entity<Basket>()
+                .HasOne<Order>()
+                .WithMany()
+                .HasForeignKey(bt => bt.OrderId);
         }
     }
 }
