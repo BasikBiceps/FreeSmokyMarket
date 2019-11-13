@@ -8,7 +8,7 @@ using FreeSmokyMarket.Infrastructure.Logging;
 using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.Data.Entities;
 using FreeSmokyMarket.EF;
-using FreeSmokyMarket.Infrastructure.ISender;
+using FreeSmokyMarket.Infrastructure.Interfaces;
 
 namespace FreeSmokyMarket.Controllers
 {
@@ -17,19 +17,18 @@ namespace FreeSmokyMarket.Controllers
         FreeSmokyMarketContext _ctx;
         ILogger _logger;
         IOrderRepository _orderRepository;
-        IMailSender _mailSender;
+        ISenderFactory _senderFactory;
         IConfiguration _configuration;
-
 
         public OrderController(FreeSmokyMarketContext ctx,
                                ILoggerFactory loggerFactory,
                                IOrderRepository orderRepository,
                                IConfiguration configuration,
-                               IMailSender mailSender)
+                               ISenderFactory senderFactory)
         {
             _ctx = ctx;
             _orderRepository = orderRepository;
-            _mailSender = mailSender;
+            _senderFactory = senderFactory;
             _configuration = configuration;
 
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "HomeControllerLogs.txt"));
@@ -45,17 +44,7 @@ namespace FreeSmokyMarket.Controllers
         [HttpPost]
         public string Buy(Order order)
         {
-            _logger.LogInformation("Orders fields: \nFirstName: {0}\nLastName: {0}\nPhoneNumber: {0}\nAddress: {0}",
-                order.FirstName,
-                order.LastName,
-                order.PhoneNumber,
-                order.Address);
-
-            var sender = _configuration["Mails:Sender"];
-            var senderPassword = _configuration["Mails:SenderPassword"];
-            var recipient = _configuration["Mails:Recipient"];
-
-            _mailSender.SendEmailAsync(sender, senderPassword, recipient, "Orders fields: \nFirstName: "
+            var message = "Orders fields: \nFirstName: "
                 + order.FirstName
                 + "\nLastName: "
                 + order.LastName
@@ -64,7 +53,12 @@ namespace FreeSmokyMarket.Controllers
                 + "\nAddress: "
                 + order.Address
                 + "\nOrderId: "
-                + order.Id);
+                + order.Id;
+
+            _logger.LogInformation(message);
+
+            _senderFactory.CreateSender("mail")?.SendMessageAsync(message);
+            _senderFactory.CreateSender("telegram")?.SendMessageAsync(message);
 
             return "Спасибо, " + order.FirstName + " " + order.LastName + ", за покупку!";
         }
