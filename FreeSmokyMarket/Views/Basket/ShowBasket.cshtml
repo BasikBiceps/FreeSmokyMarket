@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<FreeSmokyMarket.Data.Entities.Product>
+﻿@model IEnumerable<FreeSmokyMarket.Data.Entities.Product>
 @{
     ViewData["Title"] = "ShowBasket";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,17 +7,36 @@
 <body>
     <br><br>
     <h3>Products in basket</h3>
-    <ul class="hr">
-        @foreach (var product in Model)
+    @{
+        var purchasesItems = ViewData["PurchasesItems"] as List<PurchasesItem>;
+        if (purchasesItems.Count != 0)
         {
-            <li>
-                <div class="pictureSignature">
-                    <a href="~/Home/ProductDescription/@product.Id"><img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(product.ProductPicture)" /></a>
-                </div>
-            </li>
+            <ul class="hr">
+                @foreach (var product in Model)
+                {
+                    <li>
+                        <div class="pictureSignature">
+                            <a href="~/Products/ProductDescription/@product.Id"><img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(product.ProductPicture)" /></a>
+                            <p>
+                                @{
+                                    var concretePurchasesItem = purchasesItems.Find(pi => { return pi.ProductId == product.Id; });
+                                }
+                                <a href="~/Basket/DeleteFromBasket/@product.Id"><img class="delete" src="~/Images/View/delete.png" /></a>
+                                Amount: @concretePurchasesItem.Amount
+                            </p>
+                        </div>
+                    </li>
+                }
+                <a href="~/Order/Buy">
+                    <p>Оформить заказ</p>
+                </a>
+            </ul>
         }
-        <a href="~/Order/Buy">
-            <p>Оформить заказ</p>
-        </a>
-    </ul>
+        else
+        {
+            {
+                <p>Basket is empty :(</p>
+            }
+        }
+    }
 </body>

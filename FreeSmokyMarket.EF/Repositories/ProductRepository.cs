@@ -16,7 +16,7 @@ namespace FreeSmokyMarket.EF.Repositories
         {
             using (var ctx = new FreeSmokyMarketContext())
             {
-                return ctx.Products.Where(p => p.BrandId == brandId).ToList();
+                return ctx.Products.Where(p => p.BrandId == brandId).Where(p => p.Amount > 0).ToList();
             }
         }
 

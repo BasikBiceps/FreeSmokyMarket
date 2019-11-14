@@ -27,21 +27,41 @@ namespace FreeSmokyMarket.Controllers
 
         public IActionResult ShowBasket()
         {
-            var selectedProductsId = HttpContext.Session.Get<List<int>>("SelectedProducts");
+            var purchasesItems = HttpContext.Session.Get<List<PurchasesItem>>("SelectedProducts");
 
-            if (selectedProductsId == null)
+            if (purchasesItems == null)
             {
-                selectedProductsId = new List<int>();
+                purchasesItems = new List<PurchasesItem>();
             }
 
             var selectedProducts = new List<Product>();
 
-            foreach (var el in selectedProductsId)
+            foreach (var el in purchasesItems)
             {
-                selectedProducts.Add(_productRepository.GetProduct(el));
+                selectedProducts.Add(_productRepository.GetProduct(el.ProductId));
             }
 
+            ViewData["PurchasesItems"] = purchasesItems;
+
             return View(selectedProducts);
+        }
+
+        public IActionResult DeleteFromBasket(int id)
+        {
+            var purchasesItems = HttpContext.Session.Get<List<PurchasesItem>>("SelectedProducts");
+
+            var item = purchasesItems.Find(p => { return p.ProductId == id; });
+
+            item.Amount--;
+
+            if (item.Amount <= 0)
+            {
+                purchasesItems.Remove(item);
+            }
+
+            HttpContext.Session.Set("SelectedProducts", purchasesItems);
+
+            return Redirect("/Basket/ShowBasket");
         }
     }
 }

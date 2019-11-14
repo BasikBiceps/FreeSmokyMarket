@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using FreeSmokyMarket.Infrastructure.Logging;
 using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.EF;
+using FreeSmokyMarket.Data.Entities;
 
 namespace FreeSmokyMarket.Controllers
 {
@@ -44,16 +45,37 @@ namespace FreeSmokyMarket.Controllers
 
         public string Reserve(int id)
         {
-            var selectedProducts = HttpContext.Session.Get<List<int>>("SelectedProducts");
-
-            if (selectedProducts == null)
+            var purchasesItems = HttpContext.Session.Get<List<PurchasesItem>>("SelectedProducts");
+            if (purchasesItems == null)
             {
-                selectedProducts = new List<int>();
+                purchasesItems = new List<PurchasesItem>();
+            }
+            else
+            {
+                var item = purchasesItems.Find(p => { return p.ProductId == id; });
+
+                if (item != null)
+                {
+                    if (_productRepository.GetProduct(id).Amount <= item.Amount)
+                    {
+                        return "Sorry, but this product limited!";
+                    }
+
+                    item.Amount++;
+
+                    HttpContext.Session.Set("SelectedProducts", purchasesItems);
+
+                    return "Product added to the basket";
+                }
             }
 
-            selectedProducts.Add(id);
+            var newPurchasesItem = new PurchasesItem();
+            newPurchasesItem.ProductId = id;
+            newPurchasesItem.Amount = 1;
 
-            HttpContext.Session.Set("SelectedProducts", selectedProducts);
+            purchasesItems.Add(newPurchasesItem);
+
+            HttpContext.Session.Set("SelectedProducts", purchasesItems);
 
             return "Product added to the basket";
         }
