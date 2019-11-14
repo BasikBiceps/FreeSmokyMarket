@@ -6,21 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Images\basket.png" />
-    <None Include="wwwroot\Images\Coals.jpeg" />
-    <None Include="wwwroot\Images\darkside.jpg" />
-    <None Include="wwwroot\Images\fumari.jpg" />
-    <None Include="wwwroot\Images\fumari_apple.jpg" />
-    <None Include="wwwroot\Images\fumari_cherry.jpg" />
-    <None Include="wwwroot\Images\fumari_chocolate_mint_ice_cream.jpg" />
-    <None Include="wwwroot\Images\fumari_grape.jpg" />
-    <None Include="wwwroot\Images\fumari_lemon.jpg" />
-    <None Include="wwwroot\Images\fumari_pineapple_coconut.jpg" />
-    <None Include="wwwroot\Images\fumari_raspberry.jpg" />
-    <None Include="wwwroot\Images\Hookahs.jpeg" />
-    <None Include="wwwroot\Images\serbetli.jpg" />
-    <None Include="wwwroot\Images\tobacco.jpg" />
-    <None Include="wwwroot\Images\x_F6VQ.gif" />
+    <None Include="wwwroot\Images\fullingDB\Coals.jpeg" />
+    <None Include="wwwroot\Images\fullingDB\darkside.jpg" />
+    <None Include="wwwroot\Images\fullingDB\fumari.jpg" />
+    <None Include="wwwroot\Images\fullingDB\fumari_apple.jpg" />
+    <None Include="wwwroot\Images\fullingDB\fumari_cherry.jpg" />
+    <None Include="wwwroot\Images\fullingDB\fumari_chocolate_mint_ice_cream.jpg" />
+    <None Include="wwwroot\Images\fullingDB\fumari_grape.jpg" />
+    <None Include="wwwroot\Images\fullingDB\fumari_lemon.jpg" />
+    <None Include="wwwroot\Images\fullingDB\fumari_pineapple_coconut.jpg" />
+    <None Include="wwwroot\Images\fullingDB\fumari_raspberry.jpg" />
+    <None Include="wwwroot\Images\fullingDB\Hookahs.jpeg" />
+    <None Include="wwwroot\Images\fullingDB\serbetli.jpg" />
+    <None Include="wwwroot\Images\fullingDB\tobacco.jpg" />
     <None Include="wwwroot\css\General.css" />
   </ItemGroup>
 
@@ -36,6 +34,11 @@
     <ProjectReference Include="..\FreeSmokyMarket.Data\FreeSmokyMarket.Data.csproj" />
     <ProjectReference Include="..\FreeSmokyMarket.EF\FreeSmokyMarket.EF.csproj" />
     <ProjectReference Include="..\FreeSmokyMarket.Infrastructure\FreeSmokyMarket.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\css\" />
+    <Folder Include="wwwroot\Images\View\" />
   </ItemGroup>
 
 </Project>
