@@ -12,5 +12,6 @@ namespace FreeSmokyMarket.Data.Repositories
         void CreateBasket(Basket basket);
         void DeleteBasket(Basket basket);
         void UpdateBasket(Basket basket);
+        int GetLastId();
     }
 }

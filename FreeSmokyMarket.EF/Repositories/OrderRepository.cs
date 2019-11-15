@@ -15,6 +15,7 @@ namespace FreeSmokyMarket.EF.Repositories
             using (var context = new FreeSmokyMarketContext())
             {
                 context.Orders.Add(order);
+                context.SaveChanges();
             }
         }
 
@@ -23,6 +24,7 @@ namespace FreeSmokyMarket.EF.Repositories
             using (var context = new FreeSmokyMarketContext())
             {
                 context.Orders.Remove(order);
+                context.SaveChanges();
             }
         }
 
@@ -39,6 +41,14 @@ namespace FreeSmokyMarket.EF.Repositories
             using (var context = new FreeSmokyMarketContext())
             {
                 return context.Orders.Where(o => o.Id == orderId).FirstOrDefault();
+            }
+        }
+
+        public int GetLastId()
+        {
+            using (var context = new FreeSmokyMarketContext())
+            {
+                return context.Orders.Count();
             }
         }
     }

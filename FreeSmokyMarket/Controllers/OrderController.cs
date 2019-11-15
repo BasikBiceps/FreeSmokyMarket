@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using System.Globalization;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -22,19 +24,25 @@ namespace FreeSmokyMarket.Controllers
         ISenderFactory _senderFactory;
         IConfiguration _configuration;
         IProductRepository _productRepository;
+        IBasketRepository _basketRepository;
+        IPurchasesItemRepository _purchasesItemRepository;
 
         public OrderController(FreeSmokyMarketContext ctx,
                                ILoggerFactory loggerFactory,
                                IOrderRepository orderRepository,
                                IConfiguration configuration,
                                ISenderFactory senderFactory,
-                               IProductRepository productRepository)
+                               IProductRepository productRepository,
+                               IBasketRepository basketRepository,
+                               IPurchasesItemRepository purchasesItemRepository)
         {
             _ctx = ctx;
             _orderRepository = orderRepository;
             _senderFactory = senderFactory;
             _configuration = configuration;
             _productRepository = productRepository;
+            _basketRepository = basketRepository;
+            _purchasesItemRepository = purchasesItemRepository;
 
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "HomeControllerLogs.txt"));
             _logger = loggerFactory.CreateLogger("FileLogger");
@@ -64,6 +72,7 @@ namespace FreeSmokyMarket.Controllers
             using (var transaction = ctx.Database.BeginTransaction())
             {
                 var purchasesItems = HttpContext.Session.Get<List<PurchasesItem>>("SelectedProducts");
+                var updatingProducts = new List<Product>();
 
                 foreach (var el in purchasesItems)
                 {
@@ -80,9 +89,28 @@ namespace FreeSmokyMarket.Controllers
                         return NotFound();
                     }
 
-                    _productRepository.UpdateProduct(product);
-                    transaction.Commit();
+                    updatingProducts.Add(product);
                 }
+
+                foreach (var product in updatingProducts)
+                {
+                    _productRepository.UpdateProduct(product);
+                }
+
+                order.OrderDate = DateTime.Now;
+                _orderRepository.CreateOrder(order);
+
+                var basket = new Basket();
+                basket.OrderId = _orderRepository.GetLastId();
+                basket.SessionId = HttpContext.Session.Id;
+                _basketRepository.CreateBasket(basket);
+
+                foreach (var el in purchasesItems)
+                {
+                    el.BasketId = _basketRepository.GetLastId();
+                    _purchasesItemRepository.CreatePurchasesItem(el);
+                }
+                transaction.Commit();
             }
             
             HttpContext.Session.Set("SelectedProducts", new List<PurchasesItem>());

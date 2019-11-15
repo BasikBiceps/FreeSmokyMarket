@@ -35,6 +35,8 @@ namespace FreeSmokyMarket
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddDbContext<FreeSmokyMarketContext>();
             services.AddTransient<ISenderFactory, SenderFactory>();
+            services.AddTransient<IPurchasesItemRepository, PurchasesItemRepository>();
+            services.AddTransient<IBasketRepository, BasketRepository>();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
