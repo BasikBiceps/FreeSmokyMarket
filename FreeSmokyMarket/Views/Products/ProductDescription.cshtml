@@ -7,8 +7,16 @@
 <link rel="stylesheet" href="~/css/General.css" type="text/css" />
 
 <body>
-    <h3>Описание</h3>
-    <p>@Model.BrandId</p>
-    <p>@Model.Description</p>
-    <p>@Model.Price грн.</p>
+    <br><br>
+    <h3>Description</h3>
+    <img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(Model.ProductPicture)" align="left" 
+  vspace="5" hspace="15">
+    <p><br>
+        Brand: <br>
+        Description: @Model.Description<br>
+        Price: @Model.Price UAH
+    </p>
+    <br><br><br><br><br><br>
+
+
 </body>
