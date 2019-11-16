@@ -31,6 +31,10 @@ namespace FreeSmokyMarket.EF
         {
             modelBuilder.Entity<Product>().Property(cp => cp.Price).HasColumnType("decimal(18, 2)");
 
+            modelBuilder.Entity<Order>().Property(o => o.LastName).IsRequired();
+            modelBuilder.Entity<Order>().Property(o => o.FirstName).IsRequired();
+            modelBuilder.Entity<Order>().Property(o => o.PhoneNumber).IsRequired();
+
             modelBuilder.Entity<Product>()
                 .HasOne<Category>()
                 .WithMany()
