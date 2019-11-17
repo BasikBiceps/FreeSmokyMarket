@@ -16,9 +16,9 @@
                 <div class="pictureSignature">
                     <a href="~/Products/ProductDescription/@product.Id"><img class="pictureBorder" src="data:image;base64,@System.Convert.ToBase64String(product.ProductPicture)" /></a>
                     <p>
-                        <a href="~/Products/Reserve/@product.Id" target="_blank">
-                            Buy
-                        </a>
+                        <form action="~/Products/Reserve/@product.Id" method="get">
+                           <p> <button class="btn btn-success" type="submit" style="height:30px;">Buy</button></p>
+                        </form>
                     </p>
                 </div>
             </li>

@@ -31,6 +31,8 @@ namespace FreeSmokyMarket.Controllers
 
         public IActionResult ShowProducts(int id)
         {
+            HttpContext.Session.Set("BrandId", id);
+
             _logger.LogInformation("ShowProducts method in Home controller: ID == {0}", id);
 
             return View(_productRepository.GetAllProducts(id));
@@ -43,9 +45,10 @@ namespace FreeSmokyMarket.Controllers
             return View(_productRepository.GetProduct(id));
         }
 
-        public string Reserve(int id)
+        public IActionResult Reserve(int id)
         {
             var purchasesItems = HttpContext.Session.Get<List<PurchasesItem>>("SelectedProducts");
+
             if (purchasesItems == null)
             {
                 purchasesItems = new List<PurchasesItem>();
@@ -58,17 +61,16 @@ namespace FreeSmokyMarket.Controllers
                 {
                     if (_productRepository.GetProduct(id).Amount <= item.Amount)
                     {
-                        return "Sorry, but this product limited!";
+                        return Redirect("/Products/ShowProducts/" + HttpContext.Session.Get<int>("BrandId"));
                     }
 
                     item.Amount++;
 
                     HttpContext.Session.Set("SelectedProducts", purchasesItems);
 
-                    return "Product added to the basket";
+                    return Redirect("/Products/ShowProducts/" + HttpContext.Session.Get<int>("BrandId"));
                 }
             }
-
             var newPurchasesItem = new PurchasesItem();
             newPurchasesItem.ProductId = id;
             newPurchasesItem.Amount = 1;
@@ -77,7 +79,7 @@ namespace FreeSmokyMarket.Controllers
 
             HttpContext.Session.Set("SelectedProducts", purchasesItems);
 
-            return "Product added to the basket";
+            return Redirect("/Products/ShowProducts/" + HttpContext.Session.Get<int>("BrandId"));
         }
     }
 }
