@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FreeSmokyMarket.Data.Entities.Order
+
+@{
     ViewData["Title"] = "Оформление заказа";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,25 +9,29 @@
 
 <h2>Форма оформления покупки</h2>
 
-<form method="post" class="form-horizontal" role="form">
+<form asp-antiforgery="true" method="post" class="form-horizontal" role="form">
     <input type="hidden" value="@ViewBag.TabaccoId" name="TabaccoId" />
     <p>Для оформления покупки заполните следующие поля:</p>
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
     <div class="form-group">
         <label for="FirstName" class="col-md-2 control-label">Имя:</label>
         <div class="col-md-4">
             <input type="text" name="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName"></span>
         </div>
     </div>
     <div class="form-group">
         <label for="LastName" class="col-md-2 control-label">Фамилия:</label>
         <div class="col-md-4">
             <input type="text" name="LastName" class="form-control" />
+            <span asp-validation-for="LastName"></span>
         </div>
     </div>
     <div class="form-group">
         <label class="col-md-2 control-label">Телефон:</label>
         <div class="col-md-4">
-            <input type="text" name="PhoneNumber" class="form-control" />
+            <input type="text" name="PhoneNumber" class="form-control"/>
+            <span asp-validation-for="PhoneNumber"></span>
         </div>
     </div>
     <div class="form-group">
@@ -40,3 +46,27 @@
         </div>
     </div>
 </form>
+
+
+@section scripts{
+
+<environment names="Development">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+            asp-fallback-test="window.jQuery">
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+            asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator">
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
+            asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive">
+    </script>
+</environment>
+}
