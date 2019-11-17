@@ -1,29 +1,28 @@
 ﻿using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.Data.Entities;
 using FreeSmokyMarket.EF;
 using FreeSmokyMarket.Infrastructure.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace FreeSmokyMarket.Controllers
 {
     public class OrderController : Controller
     {
-        FreeSmokyMarketContext _ctx;
-        IOrderRepository _orderRepository;
-        ISenderFactory _senderFactory;
-        IConfiguration _configuration;
+        readonly ISenderFactory _senderFactory;
+        private readonly ILogger<HomeController> _logger;
 
         public OrderController(FreeSmokyMarketContext ctx,
                                IOrderRepository orderRepository,
                                IConfiguration configuration,
-                               ISenderFactory senderFactory)
+                               ISenderFactory senderFactory,
+                               ILogger<HomeController> logger)
         {
-            _ctx = ctx;
-            _orderRepository = orderRepository;
             _senderFactory = senderFactory;
-            _configuration = configuration;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -46,8 +45,7 @@ namespace FreeSmokyMarket.Controllers
                 + "\nOrderId: "
                 + order.Id;
 
-            // TODO:here add log info for message
-
+            _logger.LogDebug(message);
             _senderFactory.CreateSender("mail")?.SendMessageAsync(message);
             _senderFactory.CreateSender("telegram")?.SendMessageAsync(message);
 

@@ -9,6 +9,7 @@ using FreeSmokyMarket.EF.Repositories;
 using FreeSmokyMarket.EF;
 using FreeSmokyMarket.Infrastructure.NotificationSenders;
 using FreeSmokyMarket.Infrastructure.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace FreeSmokyMarket
 {
@@ -41,7 +42,7 @@ namespace FreeSmokyMarket
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -51,7 +52,8 @@ namespace FreeSmokyMarket
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            
+
+            loggerFactory.AddLog4Net();
             app.UseStaticFiles();
             app.UseSession();
 
