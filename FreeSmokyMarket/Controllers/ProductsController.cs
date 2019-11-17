@@ -17,13 +17,16 @@ namespace FreeSmokyMarket.Controllers
         FreeSmokyMarketContext _ctx;
         ILogger _logger;
         IProductRepository _productRepository;
+        IBrandRepository _brandRepository;
         
         public ProductsController(FreeSmokyMarketContext ctx,
                                   ILoggerFactory loggerFactory,
-                                  IProductRepository productRepository)
+                                  IProductRepository productRepository,
+                                  IBrandRepository brandRepository)
         {
             _ctx = ctx;
             _productRepository = productRepository;
+            _brandRepository = brandRepository;
 
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "HomeControllerLogs.txt"));
             _logger = loggerFactory.CreateLogger("FileLogger");
@@ -41,6 +44,8 @@ namespace FreeSmokyMarket.Controllers
         public IActionResult ProductDescription(int id)
         {
             _logger.LogInformation("ProductDescription method in Home controller: ID == {0}", id);
+
+            ViewData["BrandName"] = _brandRepository.GetBrand(_productRepository.GetProduct(id).BrandId).BrandName;
 
             return View(_productRepository.GetProduct(id));
         }
