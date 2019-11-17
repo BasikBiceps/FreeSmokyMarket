@@ -1,28 +1,18 @@
 ﻿using System.IO;
 using System.Collections.Generic;
-
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-
 using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.Data.Entities;
-using FreeSmokyMarket.Infrastructure.Logging;
 
 namespace FreeSmokyMarket.Controllers
 {
     public class BasketController : Controller
     {
-        ILogger _logger;
         IProductRepository _productRepository;
 
-        public BasketController(ILoggerFactory loggerFactory,
-                                IProductRepository productRepository)
+        public BasketController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
-
-            loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "HomeControllerLogs.txt"));
-            _logger = loggerFactory.CreateLogger("FileLogger");
         }
 
         public IActionResult ShowBasket()
