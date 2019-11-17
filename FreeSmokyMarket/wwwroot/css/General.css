@@ -26,13 +26,13 @@
     text-align: center;
 }
 
-    .pictureSignature a {
-        color: white;
-        font-size: 20px;
-        font-style: italic;
-        max-width: 200px;
-        text-decoration: none;
-    }
+.pictureSignature a {
+    color: white;
+    font-size: 20px;
+    font-style: italic;
+    max-width: 200px;
+    text-decoration: none;
+}
 
 .pictureSignature {
     max-width: 200px;
