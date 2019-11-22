@@ -58,7 +58,7 @@ namespace FreeSmokyMarket.Controllers
         public IActionResult Buy(Order order)
         {
             if (!ModelState.IsValid)
-                return View(order);
+                return View(new ViewModels.Order());
 
             var ctx = new FreeSmokyMarketContext();
             var message = "Orders fields: \nFirstName: "
