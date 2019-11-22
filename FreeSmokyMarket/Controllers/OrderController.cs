@@ -13,6 +13,7 @@ using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.Data.Entities;
 using FreeSmokyMarket.EF;
 using FreeSmokyMarket.Infrastructure.Interfaces;
+using FreeSmokyMarket.Data.Entities.Aggregates;
 
 namespace FreeSmokyMarket.Controllers
 {
@@ -25,7 +26,6 @@ namespace FreeSmokyMarket.Controllers
         IConfiguration _configuration;
         IProductRepository _productRepository;
         IBasketRepository _basketRepository;
-        IPurchasesItemRepository _purchasesItemRepository;
 
         public OrderController(FreeSmokyMarketContext ctx,
                                ILoggerFactory loggerFactory,
@@ -33,8 +33,7 @@ namespace FreeSmokyMarket.Controllers
                                IConfiguration configuration,
                                ISenderFactory senderFactory,
                                IProductRepository productRepository,
-                               IBasketRepository basketRepository,
-                               IPurchasesItemRepository purchasesItemRepository)
+                               IBasketRepository basketRepository)
         {
             _ctx = ctx;
             _orderRepository = orderRepository;
@@ -42,7 +41,6 @@ namespace FreeSmokyMarket.Controllers
             _configuration = configuration;
             _productRepository = productRepository;
             _basketRepository = basketRepository;
-            _purchasesItemRepository = purchasesItemRepository;
 
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "HomeControllerLogs.txt"));
             _logger = loggerFactory.CreateLogger("FileLogger");
@@ -102,13 +100,8 @@ namespace FreeSmokyMarket.Controllers
 
                 var basket = new Basket();
                 basket.SessionId = HttpContext.Session.Id;
+                basket.PurchasesItems = purchasesItems;
                 _basketRepository.CreateBasket(basket);
-
-                foreach (var el in purchasesItems)
-                {
-                    el.BasketId = basket.Id;
-                    _purchasesItemRepository.CreatePurchasesItem(el);
-                }
 
                 order.OrderDate = DateTime.Now;
                 order.BasketId = basket.Id;

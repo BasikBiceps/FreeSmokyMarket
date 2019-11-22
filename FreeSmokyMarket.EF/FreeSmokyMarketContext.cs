@@ -9,6 +9,7 @@ using System.Data.SqlTypes;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using FreeSmokyMarket.Data.Entities.Aggregates;
 
 namespace FreeSmokyMarket.EF
 {
@@ -44,11 +45,6 @@ namespace FreeSmokyMarket.EF
                 .HasOne<Brand>()
                 .WithMany()
                 .HasForeignKey(p => p.BrandId);
-
-            modelBuilder.Entity<PurchasesItem>()
-                .HasOne<Basket>()
-                .WithMany()
-                .HasForeignKey(pt => pt.BasketId);
 
             modelBuilder.Entity<Order>()
                 .HasOne<Basket>()

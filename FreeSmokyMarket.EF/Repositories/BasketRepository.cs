@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 
 using FreeSmokyMarket.Data.Repositories;
-using FreeSmokyMarket.Data.Entities;
+using FreeSmokyMarket.Data.Entities.Aggregates;
 
 namespace FreeSmokyMarket.EF.Repositories
 {
@@ -23,7 +23,7 @@ namespace FreeSmokyMarket.EF.Repositories
         {
             using (var context = new FreeSmokyMarketContext())
             {
-                return context.Baskets.Where(b => b.Id == id).FirstOrDefault();
+                return context.Baskets.Include(b => b.PurchasesItems).Where(b => b.Id == id).FirstOrDefault();
             }
         }
 
@@ -53,5 +53,41 @@ namespace FreeSmokyMarket.EF.Repositories
                 context.SaveChanges();
             }
         }
+
+        public PurchasesItem GetPurchasesItem(int itemId)
+        {
+            using (var ctx = new FreeSmokyMarketContext())
+            {
+                return ctx.PurchasesItems.Where(pi => pi.Id == itemId).FirstOrDefault();
+            }
+        }
+
+        public void CreatePurchasesItem(PurchasesItem item)
+        {
+            using (var ctx = new FreeSmokyMarketContext())
+            {
+                ctx.PurchasesItems.Add(item);
+                ctx.SaveChanges();
+            }
+        }
+
+        public void DeletePurchasesItem(PurchasesItem item)
+        {
+            using (var ctx = new FreeSmokyMarketContext())
+            {
+                ctx.PurchasesItems.Remove(item);
+                ctx.SaveChanges();
+            }
+        }
+
+        public void UpdatePurchasesItem(PurchasesItem item)
+        {
+            using (var ctx = new FreeSmokyMarketContext())
+            {
+                ctx.PurchasesItems.Update(item);
+                ctx.SaveChanges();
+            }
+        }
+
     }
 }

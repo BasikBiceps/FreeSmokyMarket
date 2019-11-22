@@ -19,7 +19,7 @@ namespace FreeSmokyMarket.EF.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Basket", b =>
+            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Aggregates.Basket", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,6 +30,25 @@ namespace FreeSmokyMarket.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Aggregates.PurchasesItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int?>("BasketId");
+
+                    b.Property<int>("ProductId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketId");
+
+                    b.ToTable("PurchasesItems");
                 });
 
             modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Brand", b =>
@@ -118,28 +137,16 @@ namespace FreeSmokyMarket.EF.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.PurchasesItem", b =>
+            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Aggregates.PurchasesItem", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Amount");
-
-                    b.Property<int>("BasketId");
-
-                    b.Property<int>("ProductId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BasketId");
-
-                    b.ToTable("PurchasesItems");
+                    b.HasOne("FreeSmokyMarket.Data.Entities.Aggregates.Basket")
+                        .WithMany("PurchasesItems")
+                        .HasForeignKey("BasketId");
                 });
 
             modelBuilder.Entity("FreeSmokyMarket.Data.Entities.Order", b =>
                 {
-                    b.HasOne("FreeSmokyMarket.Data.Entities.Basket")
+                    b.HasOne("FreeSmokyMarket.Data.Entities.Aggregates.Basket")
                         .WithMany()
                         .HasForeignKey("BasketId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -155,14 +162,6 @@ namespace FreeSmokyMarket.EF.Migrations
                     b.HasOne("FreeSmokyMarket.Data.Entities.Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("FreeSmokyMarket.Data.Entities.PurchasesItem", b =>
-                {
-                    b.HasOne("FreeSmokyMarket.Data.Entities.Basket")
-                        .WithMany()
-                        .HasForeignKey("BasketId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

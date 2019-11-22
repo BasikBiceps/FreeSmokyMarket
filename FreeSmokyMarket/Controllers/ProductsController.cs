@@ -9,6 +9,7 @@ using FreeSmokyMarket.Infrastructure.Logging;
 using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.EF;
 using FreeSmokyMarket.Data.Entities;
+using FreeSmokyMarket.Data.Entities.Aggregates;
 
 namespace FreeSmokyMarket.Controllers
 {
