@@ -100,19 +100,20 @@ namespace FreeSmokyMarket.Controllers
                     _productRepository.UpdateProduct(product);
                 }
 
-                order.OrderDate = DateTime.Now;
-                _orderRepository.CreateOrder(order);
-
                 var basket = new Basket();
-                basket.OrderId = _orderRepository.GetLastId();
                 basket.SessionId = HttpContext.Session.Id;
                 _basketRepository.CreateBasket(basket);
 
                 foreach (var el in purchasesItems)
                 {
-                    el.BasketId = _basketRepository.GetLastId();
+                    el.BasketId = basket.Id;
                     _purchasesItemRepository.CreatePurchasesItem(el);
                 }
+
+                order.OrderDate = DateTime.Now;
+                order.BasketId = basket.Id;
+                _orderRepository.CreateOrder(order);
+
                 transaction.Commit();
             }
             

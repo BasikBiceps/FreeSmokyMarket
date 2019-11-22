@@ -8,10 +8,10 @@ namespace FreeSmokyMarket.Data.Repositories
 {
     public interface IBasketRepository
     {
-        Basket GetBasket(int orderId);
+        Basket GetBasketByOrderId(int orderId);
+        Basket GetBasketByOwnId(int id);
         void CreateBasket(Basket basket);
         void DeleteBasket(Basket basket);
         void UpdateBasket(Basket basket);
-        int GetLastId();
     }
 }

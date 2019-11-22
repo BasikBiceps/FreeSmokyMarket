@@ -11,11 +11,19 @@ namespace FreeSmokyMarket.EF.Repositories
 {
     public class BasketRepository : IBasketRepository
     {
-        public Basket GetBasket(int orderId)
+        public Basket GetBasketByOrderId(int orderId)
         {
             using (var context = new FreeSmokyMarketContext())
             {
-                return context.Baskets.Where(b => b.OrderId == orderId).FirstOrDefault();
+                return GetBasketByOwnId(context.Orders.Where(o => o.Id == orderId).FirstOrDefault().BasketId);
+            }
+        }
+
+        public Basket GetBasketByOwnId(int id)
+        {
+            using (var context = new FreeSmokyMarketContext())
+            {
+                return context.Baskets.Where(b => b.Id == id).FirstOrDefault();
             }
         }
 
@@ -43,14 +51,6 @@ namespace FreeSmokyMarket.EF.Repositories
             {
                 context.Baskets.Update(basket);
                 context.SaveChanges();
-            }
-        }
-
-        public int GetLastId()
-        {
-            using (var context = new FreeSmokyMarketContext())
-            {
-                return context.Baskets.Count();
             }
         }
     }

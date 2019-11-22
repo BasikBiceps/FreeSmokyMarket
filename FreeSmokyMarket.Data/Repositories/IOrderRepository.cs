@@ -12,6 +12,5 @@ namespace FreeSmokyMarket.Data.Repositories
         void DeleteOrder(Order order);
         List<Order> GetAllOrders();
         Order GetOrder(int orderId);
-        int GetLastId();
     }
 }

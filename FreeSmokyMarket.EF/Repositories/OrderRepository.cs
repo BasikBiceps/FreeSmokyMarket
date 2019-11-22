@@ -43,13 +43,5 @@ namespace FreeSmokyMarket.EF.Repositories
                 return context.Orders.Where(o => o.Id == orderId).FirstOrDefault();
             }
         }
-
-        public int GetLastId()
-        {
-            using (var context = new FreeSmokyMarketContext())
-            {
-                return context.Orders.Count();
-            }
-        }
     }
 }

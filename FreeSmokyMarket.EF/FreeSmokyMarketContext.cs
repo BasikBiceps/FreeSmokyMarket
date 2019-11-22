@@ -50,10 +50,10 @@ namespace FreeSmokyMarket.EF
                 .WithMany()
                 .HasForeignKey(pt => pt.BasketId);
 
-            modelBuilder.Entity<Basket>()
-                .HasOne<Order>()
+            modelBuilder.Entity<Order>()
+                .HasOne<Basket>()
                 .WithMany()
-                .HasForeignKey(bt => bt.OrderId);
+                .HasForeignKey(bt => bt.BasketId);
         }
     }
 }
