@@ -50,6 +50,10 @@ namespace FreeSmokyMarket.EF
                 .HasOne<Basket>()
                 .WithMany()
                 .HasForeignKey(bt => bt.BasketId);
+
+            modelBuilder.Entity<Basket>()
+                .Property(b => b.IsActive)
+                .HasDefaultValue(true);
         }
     }
 }

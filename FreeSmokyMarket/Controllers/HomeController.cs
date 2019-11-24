@@ -1,18 +1,16 @@
-﻿using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 
-using Microsoft.AspNetCore.Mvc;
-
-using FreeSmokyMarket.EF;
+using FreeSmokyMarket.Data.Repositories;
 
 namespace FreeSmokyMarket.Controllers
 {
     public class HomeController : Controller
     {
-        private FreeSmokyMarketContext _ctx;
+        private ICategoryRepository _categoryRepository;
 
-        public HomeController(FreeSmokyMarketContext ctx)
+        public HomeController(ICategoryRepository categoryRepository)
         {
-            _ctx = ctx;
+            _categoryRepository = categoryRepository;
         }
 
         public  IActionResult About()
@@ -22,7 +20,7 @@ namespace FreeSmokyMarket.Controllers
 
         public IActionResult MainPage()
         {
-            return View(_ctx.Categories.ToList());
+            return View(_categoryRepository.GetAllCategories());
         }
     }
 }

@@ -1,45 +1,39 @@
-﻿using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
 using FreeSmokyMarket.Data.Repositories;
-using FreeSmokyMarket.Data.Entities;
-using FreeSmokyMarket.Infrastructure.Logging;
 using FreeSmokyMarket.Data.Entities.Aggregates;
+using FreeSmokyMarket.Domain.Interfaces;
 
 namespace FreeSmokyMarket.Controllers
 {
     public class BasketController : Controller
     {
-        ILogger _logger;
-        IProductRepository _productRepository;
+        IReservationService _reservationService;
+        IBasketRepository _basketRepository;
 
-        public BasketController(ILoggerFactory loggerFactory,
-                                IProductRepository productRepository)
+        public BasketController(IReservationService reservationService,
+                                IBasketRepository basketRepository)
         {
-            _productRepository = productRepository;
-
-            loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "HomeControllerLogs.txt"));
-            _logger = loggerFactory.CreateLogger("FileLogger");
+            _reservationService = reservationService;
+            _basketRepository = basketRepository;
         }
 
         public IActionResult ShowBasket()
         {
-            var purchasesItems = HttpContext.Session.Get<List<PurchasesItem>>("SelectedProducts");
+            var selectedProducts = _reservationService.ShowReservedProducts(HttpContext.Session.Id);
+            var basket = _basketRepository.GetActiveBasketBySessionId(HttpContext.Session.Id);
+            List<PurchasesItem> purchasesItems;
 
-            if (purchasesItems == null)
+            if (basket == null || !basket.IsActive)
             {
                 purchasesItems = new List<PurchasesItem>();
             }
-
-            var selectedProducts = new List<Product>();
-
-            foreach (var el in purchasesItems)
+            else
             {
-                selectedProducts.Add(_productRepository.GetProduct(el.ProductId));
+                purchasesItems = basket.PurchasesItems;
             }
 
             ViewData["PurchasesItems"] = purchasesItems;
@@ -49,18 +43,7 @@ namespace FreeSmokyMarket.Controllers
 
         public IActionResult DeleteFromBasket(int id)
         {
-            var purchasesItems = HttpContext.Session.Get<List<PurchasesItem>>("SelectedProducts");
-
-            var item = purchasesItems.Find(p => { return p.ProductId == id; });
-
-            item.Amount--;
-
-            if (item.Amount <= 0)
-            {
-                purchasesItems.Remove(item);
-            }
-
-            HttpContext.Session.Set("SelectedProducts", purchasesItems);
+            _reservationService.UnreserveProduct(HttpContext.Session.Id, id);
 
             return Redirect("/Basket/ShowBasket");
         }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +12,8 @@ using FreeSmokyMarket.EF.Repositories;
 using FreeSmokyMarket.EF;
 using FreeSmokyMarket.Infrastructure.NotificationSenders;
 using FreeSmokyMarket.Infrastructure.Interfaces;
+using FreeSmokyMarket.Domain.Interfaces;
+using FreeSmokyMarket.Domain.Services;
 
 namespace FreeSmokyMarket
 {
@@ -36,13 +35,15 @@ namespace FreeSmokyMarket
             services.AddDbContext<FreeSmokyMarketContext>();
             services.AddTransient<ISenderFactory, SenderFactory>();
             services.AddTransient<IBasketRepository, BasketRepository>();
+            services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Name = ".MyApp.Session";
                 options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.IdleTimeout = TimeSpan.FromMinutes(ReservationService.SessionTimeLimitInMinutes);
             });
 
             services.AddMvc();

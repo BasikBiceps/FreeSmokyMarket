@@ -9,4 +9,6 @@ FreeSmokyMarket.EF/bin/
 FreeSmokyMarket.EF/obj/
 FreeSmokyMarket.Infrastructure/bin/
 FreeSmokyMarket.Infrastructure/obj/
+FreeSmokyMarket.Domain/bin/
+FreeSmokyMarket.Domain/obj/
 /FreeSmokyMarket/HomeControllerLogs.txt

@@ -12,6 +12,8 @@ namespace FreeSmokyMarket.Data.Entities.Aggregates
     {
         public int Id { get; set; }
         public string SessionId { get; set; }
+        public DateTime BasketCreation { get; set; }
         public List<PurchasesItem> PurchasesItems { get; set; }
+        public bool IsActive { get; set; }
     }
 }
