@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FreeSmokyMarket.Data\FreeSmokyMarket.Data.csproj" />
+    <ProjectReference Include="..\FreeSmokyMarket.Infrastructure\FreeSmokyMarket.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

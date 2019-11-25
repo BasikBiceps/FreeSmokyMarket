@@ -14,6 +14,7 @@ using FreeSmokyMarket.Infrastructure.NotificationSenders;
 using FreeSmokyMarket.Infrastructure.Interfaces;
 using FreeSmokyMarket.Domain.Interfaces;
 using FreeSmokyMarket.Domain.Services;
+using FreeSmokyMarket.EF.Transaction;
 
 namespace FreeSmokyMarket
 {
@@ -37,6 +38,7 @@ namespace FreeSmokyMarket
             services.AddTransient<IBasketRepository, BasketRepository>();
             services.AddTransient<IReservationService, ReservationService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<ITransactionFactory, EFTransactionFactory>();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {

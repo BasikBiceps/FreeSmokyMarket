@@ -5,6 +5,7 @@ using FreeSmokyMarket.Data.Entities;
 using FreeSmokyMarket.Data.Entities.Aggregates;
 using FreeSmokyMarket.Domain.Interfaces;
 using FreeSmokyMarket.Data.Repositories;
+using FreeSmokyMarket.Infrastructure.Interfaces;
 
 namespace FreeSmokyMarket.Domain.Services
 {
@@ -12,19 +13,22 @@ namespace FreeSmokyMarket.Domain.Services
     {
         private IProductRepository _productRepository;
         private IBasketRepository _basketRepository;
+        private ITransactionFactory _transactionFactory;
 
         public static int SessionTimeLimitInMinutes { get; } = 20;
 
         public ReservationService(IProductRepository productRepository,
-                                  IBasketRepository basketRepository)
+                                  IBasketRepository basketRepository,
+                                  ITransactionFactory transactionFactory)
         {
             _productRepository = productRepository;
             _basketRepository = basketRepository;
+            _transactionFactory = transactionFactory;
         }
 
         public void ReserveProduct(string sessionId, int productId)
         {
-            using (var transaction = new FreeSmokyMarket.EF.FreeSmokyMarketContext().Database.BeginTransaction())
+            using (var transaction = _transactionFactory.StartTransaction())
             {
                 if (_productRepository.GetProduct(productId).Amount <= 0)
                 {
@@ -104,7 +108,7 @@ namespace FreeSmokyMarket.Domain.Services
 
         public void UnreserveProduct(string sessionId, int productId)
         {
-            using (var transaction = new FreeSmokyMarket.EF.FreeSmokyMarketContext().Database.BeginTransaction())
+            using (var transaction = _transactionFactory.StartTransaction())
             {
                 var basket = _basketRepository.GetActiveBasketBySessionId(sessionId);
 
@@ -141,7 +145,7 @@ namespace FreeSmokyMarket.Domain.Services
 
         public void UpdateReservation()
         {
-            using (var transaction = new FreeSmokyMarket.EF.FreeSmokyMarketContext().Database.BeginTransaction())
+            using (var transaction = _transactionFactory.StartTransaction())
             {
                 var baskets = _basketRepository.GetAllBaskets();
 

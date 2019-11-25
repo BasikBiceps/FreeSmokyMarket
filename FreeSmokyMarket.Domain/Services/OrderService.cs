@@ -4,6 +4,7 @@ using FreeSmokyMarket.Data.Entities;
 using FreeSmokyMarket.Data.Repositories;
 using FreeSmokyMarket.Data.Entities.Aggregates;
 using FreeSmokyMarket.Domain.Interfaces;
+using FreeSmokyMarket.Infrastructure.Interfaces;
 
 namespace FreeSmokyMarket.Domain.Services
 {
@@ -11,12 +12,15 @@ namespace FreeSmokyMarket.Domain.Services
     {
         private IBasketRepository _basketRepository;
         private IOrderRepository _orderRepository;
+        private ITransactionFactory _transactionFactory;
 
         public OrderService(IBasketRepository basketRepository,
-                            IOrderRepository orderRepository)
+                            IOrderRepository orderRepository,
+                            ITransactionFactory transactionFactory)
         {
             _basketRepository = basketRepository;
             _orderRepository = orderRepository;
+            _transactionFactory = transactionFactory;
         }
 
         public void MakeOrder(Basket basket, Order order)
@@ -26,7 +30,7 @@ namespace FreeSmokyMarket.Domain.Services
                 return;
             }
 
-            using (var transaction = new FreeSmokyMarket.EF.FreeSmokyMarketContext().Database.BeginTransaction())
+            using (var transaction = _transactionFactory.StartTransaction())
             {
                 basket.IsActive = false;
                 _basketRepository.UpdateBasket(basket);
